@@ -4,29 +4,44 @@ Class {
 	#category : #'Faker-Modules'
 }
 
-{ #category : #accessing }
+{ #category : #domain }
+FakerInternet >> domainName [
+	^ self domainNameWithSubdomain: false
+]
+
+{ #category : #domain }
+FakerInternet >> domainNameWithSubdomain: aBoolean [
+	| theNames |
+	theNames := OrderedCollection new: 3.
+	aBoolean ifTrue: [ theNames add: (self base prepareString: self domainWord) ].
+	theNames add: (self base prepareString: self domainWord).
+	theNames add: self domainSuffix.
+	^ $. join: theNames
+]
+
+{ #category : #domain }
 FakerInternet >> domainSuffix [
 	"Return a random domain suffix"
 	<return: #String>
-	^ self base sample: self base locales domainSuffixes
+	^ self locales internetDomainSuffix
 ]
 
-{ #category : #accessing }
+{ #category : #domain }
 FakerInternet >> domainWord [
 	"Return a company domain name"
 	<return: #String>
 	| aName |
 	aName := String space split: self base company name.
-	^ self base prepareString: aName
+	^ self base prepareString: aName first
 ]
 
-{ #category : #accessing }
+{ #category : #user }
 FakerInternet >> username [
 	<return: #String>
 	^ self usernameWithSeparators: '._'
 ]
 
-{ #category : #accessing }
+{ #category : #user }
 FakerInternet >> usernameWithSeparators: aCollection [
 	<return: #String>
 	^ self base sample: { 

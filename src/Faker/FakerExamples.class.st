@@ -22,6 +22,28 @@ FakerExamples >> faker [
 ]
 
 { #category : #internet }
+FakerExamples >> internetDomainName [
+	<gtExample>
+	| aResult |
+	aResult := self faker internet domainName.
+	self assert: aResult isString.
+	self assert: aResult isNotEmpty.
+	self assert: ($. split: aResult) size equals: 2.
+	^ aResult
+]
+
+{ #category : #internet }
+FakerExamples >> internetDomainNameWithSubDomain [
+	<gtExample>
+	| aResult |
+	aResult := self faker internet domainNameWithSubdomain: true.
+	self assert: aResult isString.
+	self assert: aResult isNotEmpty.
+	self assert: ($. split: aResult) size equals: 3.
+	^ aResult
+]
+
+{ #category : #internet }
 FakerExamples >> internetUsername [
 	<gtExample>
 	| aResult |

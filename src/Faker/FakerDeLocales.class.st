@@ -217,12 +217,22 @@ FakerDeLocales >> companySuffixes [
 ]
 
 { #category : #internet }
-FakerDeLocales >> domainSuffixes [
+FakerDeLocales >> internetDomainSuffix [
+	^ self sample: self internetDomainSuffixes
+]
+
+{ #category : #internet }
+FakerDeLocales >> internetDomainSuffixes [
 	^ #( 'com' 'info' 'name' 'net' 'org' 'de' 'ch' )
 ]
 
 { #category : #internet }
-FakerDeLocales >> freeEmailDomains [
+FakerDeLocales >> internetFreeEmailDomain [
+	^ self sample: self internetFreeEmailDomains
+]
+
+{ #category : #internet }
+FakerDeLocales >> internetFreeEmailDomains [
 	^ #( 'gmail.com' 'yahoo.com' 'hotmail.com' 'gmx.de' 'web.de' 'mail.de' 'freenet.de' )
 ]
 
