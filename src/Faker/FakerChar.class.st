@@ -4,7 +4,7 @@ Class {
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #'Faker-Base'
+	#category : #'Faker-Modules'
 }
 
 { #category : #cleanup }

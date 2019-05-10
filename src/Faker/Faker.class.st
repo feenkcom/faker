@@ -1,66 +1,83 @@
 Class {
-	#name : #FakerBase,
+	#name : #Faker,
 	#superclass : #Object,
 	#instVars : [
-		'configuration'
+		'locales',
+		'random'
 	],
 	#classVars : [
 		'Letters',
 		'Numbers',
 		'ULetters'
 	],
-	#category : #'Faker-Base'
+	#category : #'Faker-Core'
 }
 
 { #category : #'class initialization' }
-FakerBase class >> initialize [
+Faker class >> initialize [
 	Numbers := 0 to: 9.
 	ULetters := Character alphabet.
    Letters := ULetters, ULetters asUppercase.
 ]
 
 { #category : #'accessing - modules' }
-FakerBase >> char [
-	<return: #FakerChar>
+Faker >> char [
 	^ FakerChar uniqueInstance
 ]
 
-{ #category : #accessing }
-FakerBase >> configuration [
-	<return: #FakerConfiguration>
-	^ configuration ifNil: [ configuration := self defaultConfiguration ]
+{ #category : #'accessing - modules' }
+Faker >> company [
+	^ FakerCompany new base: self
 ]
 
 { #category : #defaults }
-FakerBase >> defaultConfiguration [
-	^ FakerConfiguration new
+Faker >> defaultLocales [
+	^ FakerLocales default
+]
+
+{ #category : #defaults }
+Faker >> defaultRandom [
+	^ SharedRandom globalGenerator
 ]
 
 { #category : #actions }
-FakerBase >> familyName [
-	<return: #String>
-	^ self name familyName
-]
-
-{ #category : #actions }
-FakerBase >> firstName [
+Faker >> firstName [
 	<return: #String>
 	^ self name firstName
 ]
 
 { #category : #'accessing - modules' }
-FakerBase >> internet [
+Faker >> internet [
 	^ FakerInternet new base: self
 ]
 
+{ #category : #actions }
+Faker >> lastName [
+	<return: #String>
+	^ self name lastName
+]
+
+{ #category : #accessing }
+Faker >> locales [
+	<return: #FakerLocales>
+	^ locales ifNil: [ locales := FakerLocales default base: self ]
+]
+
+{ #category : #accessing }
+Faker >> locales: aFakerLocales [
+	self 
+		assert: [ aFakerLocales isNotNil ] 
+		description: [ 'Locales must be non-nil' ].
+	locales := aFakerLocales
+]
+
 { #category : #'accessing - modules' }
-FakerBase >> name [
-	<return: #FakerChar>
+Faker >> name [
 	^ FakerName new base: self
 ]
 
 { #category : #actions }
-FakerBase >> numerify: aNumberPattern leadingZero: aBoolean [
+Faker >> numerify: aNumberPattern leadingZero: aBoolean [
 	"Replace # characters by numbers. 
 	 Initial number can be a zero if aBoolean is true"
 	<return: #String>
@@ -89,27 +106,41 @@ FakerBase >> numerify: aNumberPattern leadingZero: aBoolean [
 ]
 
 { #category : #actions }
-FakerBase >> prepareString: aString [ 
+Faker >> prepareString: aString [ 
 	<return: #String>
 	^ self char prepare: aString
 ]
 
 { #category : #accessing }
-FakerBase >> sample: aCollection [
+Faker >> random [
+	<return: #Random>
+	^ random ifNil: [ random := self defaultRandom ]
+]
+
+{ #category : #accessing }
+Faker >> random: aRandom [
+	self 
+		assert: [ aRandom isNotNil ] 
+		description: [ 'Random instance must be non-nil' ].
+	random := aRandom
+]
+
+{ #category : #actions }
+Faker >> sample: aCollection [
 	"Return any random item from the collection"
 	<return: #Object>
 	self 
 		assert: [ aCollection isNotNil ]
 		description: [ 'Only collections can be sampled' ].
-	^ aCollection atRandom: self configuration random.
+	^ aCollection atRandom: self random.
 ]
 
 { #category : #actions }
-FakerBase >> shuffle: aSequenceableCollection [
+Faker >> shuffle: aSequenceableCollection [
 	"Randomly shuffle collection items"
 	<return: #SequenceableCollection>
 	self 
 		assert: [ aSequenceableCollection isCollection ]
 		description: [ 'Only collections can be shuffled' ].
-	^ aSequenceableCollection shuffleBy: self configuration random 
+	^ aSequenceableCollection shuffleBy: self random 
 ]

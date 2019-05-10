@@ -1,20 +1,23 @@
 Class {
 	#name : #FakerInternet,
-	#superclass : #Object,
-	#instVars : [
-		'base'
-	],
-	#category : #'Faker-Internet'
+	#superclass : #FakerModule,
+	#category : #'Faker-Modules'
 }
 
-{ #category : #accessing }
-FakerInternet >> base [
-	^ base
+{ #category : #actions }
+FakerInternet >> domainSuffix [
+	"Return a random domain suffix"
+	<return: #String>
+	^ self base sample: self base locales domainSuffixes
 ]
 
 { #category : #accessing }
-FakerInternet >> base: anObject [
-	base := anObject
+FakerInternet >> domainWord [
+	"Return a company domain name"
+	<return: #String>
+	| aName |
+	aName := String space split: self base company name.
+	^ self base prepareString: aName
 ]
 
 { #category : #actions }
@@ -32,7 +35,7 @@ FakerInternet >> usernameWithSeparators: aCollection [
 		"first name and family name"
 		aCollection atRandom join: { 
 			self base prepareString: self base firstName.
-			self base prepareString: self base familyName }.
+			self base prepareString: self base lastName }.
 	} 
 	
 ]

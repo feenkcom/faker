@@ -1,12 +1,7 @@
 Class {
 	#name : #FakerName,
-	#superclass : #Object,
-	#instVars : [
-		'base',
-		'firstNames',
-		'familyNames'
-	],
-	#category : #'Faker-Base'
+	#superclass : #FakerModule,
+	#category : #'Faker-Modules'
 }
 
 { #category : #names }
@@ -173,35 +168,18 @@ Tracy' lines
 
 { #category : #accessing }
 FakerName >> base [
-	<return: #FakerBase>
+	<return: #Faker>
 	^ base
-]
-
-{ #category : #accessing }
-FakerName >> base: anObject [
-	base := anObject
-]
-
-{ #category : #accessing }
-FakerName >> familyName [
-	<return: #String>
-	^ self base sample: self familyNames
-]
-
-{ #category : #accessing }
-FakerName >> familyNames [
-	<return: #Array of: #String>
-	^ familyNames ifNil: [ familyNames := self class englishCommonFamilyNames ]
 ]
 
 { #category : #accessing }
 FakerName >> firstName [
 	<return: #String>
-	^ self base sample: self firstNames
+	^ self locales personFirstName
 ]
 
 { #category : #accessing }
-FakerName >> firstNames [
-	<return: #Array of: #String>
-	^ firstNames ifNil: [ firstNames := self class englishCommonFirstNames ]
+FakerName >> lastName [
+	<return: #String>
+	^ self locales personLastName
 ]

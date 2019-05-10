@@ -7,7 +7,7 @@ Class {
 { #category : #base }
 FakerExamples >> base [
 	<gtExample>
-	^ FakerBase new.
+	^ Faker new.
 	
 ]
 
@@ -15,7 +15,7 @@ FakerExamples >> base [
 FakerExamples >> englishCommonFamilyName [
 	<gtExample>
 	| aResult |
-	aResult := self base familyName.
+	aResult := self base lastName.
 	self assert: aResult isString.
 	self assert: aResult isNotEmpty.
 	^ aResult
