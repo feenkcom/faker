@@ -4,7 +4,7 @@ Class {
 	#category : #'Faker-Modules'
 }
 
-{ #category : #actions }
+{ #category : #accessing }
 FakerInternet >> domainSuffix [
 	"Return a random domain suffix"
 	<return: #String>
@@ -20,13 +20,13 @@ FakerInternet >> domainWord [
 	^ self base prepareString: aName
 ]
 
-{ #category : #actions }
+{ #category : #accessing }
 FakerInternet >> username [
 	<return: #String>
 	^ self usernameWithSeparators: '._'
 ]
 
-{ #category : #actions }
+{ #category : #accessing }
 FakerInternet >> usernameWithSeparators: aCollection [
 	<return: #String>
 	^ self base sample: { 

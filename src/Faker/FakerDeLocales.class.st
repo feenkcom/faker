@@ -182,6 +182,40 @@ Class {
 	#category : #'Faker-Locales'
 }
 
+{ #category : #company }
+FakerDeLocales >> companyLegalForm [
+	^ self sample: self companyLegalForms
+]
+
+{ #category : #company }
+FakerDeLocales >> companyLegalForms [ 
+	^ #( 'GmbH' 'AG' 'Gruppe' 'KG' 'GmbH & Co. KG' 'UG' 'OHG' )
+]
+
+{ #category : #company }
+FakerDeLocales >> companyName [
+	^ self sample: self companyNames
+]
+
+{ #category : #company }
+FakerDeLocales >> companyNames [
+	^ {
+			( String space join: { self personLastName . self companySuffix } ).
+			( String empty join: { self personFirstName. '-' . self personLastName } ).
+			( String space join: { self personFirstName. self personLastName . 'und' . self personLastName } )
+		}
+]
+
+{ #category : #company }
+FakerDeLocales >> companySuffix [
+	^ self sample: self companySuffixes
+]
+
+{ #category : #company }
+FakerDeLocales >> companySuffixes [
+	^ #( 'GmbH' 'AG' 'Gruppe' 'KG' 'GmbH & Co. KG' 'UG' 'OHG' )
+]
+
 { #category : #internet }
 FakerDeLocales >> domainSuffixes [
 	^ #( 'com' 'info' 'name' 'net' 'org' 'de' 'ch' )

@@ -167,12 +167,6 @@ Tracy' lines
 ]
 
 { #category : #accessing }
-FakerName >> base [
-	<return: #Faker>
-	^ base
-]
-
-{ #category : #accessing }
 FakerName >> firstName [
 	<return: #String>
 	^ self locales personFirstName

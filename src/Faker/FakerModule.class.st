@@ -28,3 +28,10 @@ FakerModule >> locales [
 	<return: #FakerLocales>
 	^ self base locales
 ]
+
+{ #category : #actions }
+FakerModule >> sample: aCollection [
+	"Return any random item from the collection"
+	<return: #Object>
+	^ self base sample: aCollection
+]
