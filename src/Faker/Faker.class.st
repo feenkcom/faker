@@ -3,7 +3,8 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'locales',
-		'random'
+		'random',
+		'properties'
 	],
 	#classVars : [
 		'Letters',
@@ -28,6 +29,11 @@ Faker >> char [
 { #category : #'accessing - modules' }
 Faker >> company [
 	^ FakerCompany new base: self
+]
+
+{ #category : #'accessing - modules' }
+Faker >> date [
+	^ FakerDate new base: self
 ]
 
 { #category : #defaults }
@@ -77,6 +83,13 @@ Faker >> name [
 ]
 
 { #category : #actions }
+Faker >> numerify: aNumberPattern [
+	"Replace # characters by numbers."
+	<return: #String>
+	^ self numerify: aNumberPattern leadingZero: false
+]
+
+{ #category : #actions }
 Faker >> numerify: aNumberPattern leadingZero: aBoolean [
 	"Replace # characters by numbers. 
 	 Initial number can be a zero if aBoolean is true"
@@ -109,6 +122,20 @@ Faker >> numerify: aNumberPattern leadingZero: aBoolean [
 Faker >> prepareString: aString [ 
 	<return: #String>
 	^ self char prepare: aString
+]
+
+{ #category : #accessing }
+Faker >> properties [
+	<return: #FakerProperties>
+	^ properties ifNil: [ properties := FakerProperties new base: self ]
+]
+
+{ #category : #accessing }
+Faker >> properties: aFakerProperties [
+	self 
+		assert: [ aFakerProperties isNotNil ] 
+		description: [ 'Faker properties must be non-nil' ].
+	properties := aFakerProperties
 ]
 
 { #category : #accessing }

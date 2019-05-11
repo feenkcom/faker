@@ -4,6 +4,34 @@ Class {
 	#category : #'Faker-Modules'
 }
 
+{ #category : #cookie }
+FakerInternet >> cookieCreationDate [
+	<return: #DateAndTime>
+	self properties isDateRangeDefined
+		ifFalse: [ ^ self base date backward: 2 years ].
+	^ self base date sample
+]
+
+{ #category : #cookie }
+FakerInternet >> cookieExpiryTime [
+	<return: #DateAndTime>
+	self properties isDateRangeDefined
+		ifFalse: [ ^ self base date forward: 6 years ].
+	^ self base date sample
+]
+
+{ #category : #cookie }
+FakerInternet >> cookieName [
+	<return: #String>
+	^ self locales internetCookieName
+]
+
+{ #category : #cookie }
+FakerInternet >> cookieValue [
+	<return: #String>
+	^ self locales internetCookieValue 
+]
+
 { #category : #domain }
 FakerInternet >> domainName [
 	^ self domainNameWithSubdomain: false

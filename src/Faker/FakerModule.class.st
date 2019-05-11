@@ -29,6 +29,12 @@ FakerModule >> locales [
 	^ self base locales
 ]
 
+{ #category : #accessing }
+FakerModule >> properties [
+	<return: #FakerLocales>
+	^ self base properties
+]
+
 { #category : #actions }
 FakerModule >> sample: aCollection [
 	"Return any random item from the collection"

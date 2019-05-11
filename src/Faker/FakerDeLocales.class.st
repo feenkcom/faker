@@ -217,6 +217,31 @@ FakerDeLocales >> companySuffixes [
 ]
 
 { #category : #internet }
+FakerDeLocales >> internetCookieName [
+	^ self sample: self internetCookieNames
+]
+
+{ #category : #internet }
+FakerDeLocales >> internetCookieNames [
+	^ #( 'CONSENT' 'NID' 'ANID' '__ga' '__cfduid' '__utma' '__gads' '__gid' '__user_id' 'sid' )
+]
+
+{ #category : #internet }
+FakerDeLocales >> internetCookieValue [
+	^ self sample: self internetCookieValues
+]
+
+{ #category : #internet }
+FakerDeLocales >> internetCookieValues [
+	^ { '1'. ''. 'true'. 'null'. '0'. 'de_DE'. 'yes'. 'EUR'. 'no'. 
+			self base numerify: '##########-############-#############-###'.
+			self base numerify: '##########.#####.########.########'.
+			self base numerify: '#######'.
+			self base numerify: '##.#####.#####-##########'.
+			self base numerify: '###.#################'. }
+]
+
+{ #category : #internet }
 FakerDeLocales >> internetDomainSuffix [
 	^ self sample: self internetDomainSuffixes
 ]

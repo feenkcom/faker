@@ -22,6 +22,16 @@ FakerExamples >> faker [
 ]
 
 { #category : #internet }
+FakerExamples >> internetCookieName [
+	<gtExample>
+	| aResult |
+	aResult := self faker internet cookieName.
+	self assert: aResult isString.
+	self assert: aResult isNotEmpty.
+	^ aResult
+]
+
+{ #category : #internet }
 FakerExamples >> internetDomainName [
 	<gtExample>
 	| aResult |
