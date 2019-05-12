@@ -54,6 +54,16 @@ FakerExamples >> internetDomainNameWithSubDomain [
 ]
 
 { #category : #internet }
+FakerExamples >> internetUrl [
+	<gtExample>
+	| aResult |
+	aResult := self faker internet url.
+	self assert: aResult isString.
+	self assert: aResult isNotEmpty.
+	^ aResult
+]
+
+{ #category : #internet }
 FakerExamples >> internetUsername [
 	<gtExample>
 	| aResult |

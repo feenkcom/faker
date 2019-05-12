@@ -63,6 +63,34 @@ FakerInternet >> domainWord [
 	^ self base prepareString: aName first
 ]
 
+{ #category : #address }
+FakerInternet >> url [
+	<return: #String>
+	^ self 
+		urlScheme: 'https' 
+		host: self domainName 
+		path: ((self sample: (0 to: 6)) timesCollect: [ self username ])
+]
+
+{ #category : #address }
+FakerInternet >> urlScheme: aSchemeName host: aHostName path: aPathSegments [
+	<return: #String>
+	self
+		assert: [ aSchemeName isString ]
+		description: [ 'URL scheme must be a string or symbol' ].
+	self 
+		assert: [ aHostName isString ]
+		description: [ 'URL host must be a string' ].
+	self 
+		assert: [ aPathSegments isCollection ]
+		description: [ 'URL path must be a collection of strings' ].
+	^ (ZnUrl new 
+		scheme: aSchemeName;
+		host: aHostName;
+		addPathSegments: aPathSegments) asString
+		
+]
+
 { #category : #user }
 FakerInternet >> username [
 	<return: #String>
