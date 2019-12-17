@@ -32,6 +32,11 @@ Faker >> company [
 ]
 
 { #category : #'accessing - modules' }
+Faker >> country [
+	^ FakerCountry new base: self
+]
+
+{ #category : #'accessing - modules' }
 Faker >> date [
 	^ FakerDate new base: self
 ]

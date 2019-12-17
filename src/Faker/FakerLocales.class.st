@@ -17,3 +17,31 @@ FakerLocales class >> de [
 FakerLocales class >> default [
 	^ self de
 ]
+
+{ #category : #public }
+FakerLocales class >> en [
+	^ FakerEnLocales new
+]
+
+{ #category : #country }
+FakerLocales >> countryIsoCode [
+	<return: #String>
+	^ self countryNamesAndIsoCode second
+]
+
+{ #category : #country }
+FakerLocales >> countryName [
+	<return: #String>
+	^ self countryNamesAndIsoCode first
+]
+
+{ #category : #country }
+FakerLocales >> countryNamesAndIsoCode [
+	<return: #Array of: #String>
+	^ self sample: self countryNamesAndIsoCodes
+]
+
+{ #category : #country }
+FakerLocales >> countryNamesAndIsoCodes [
+	^ FakerEnLocales new countryNamesAndIsoCodes
+]
