@@ -179,6 +179,9 @@ de:
 Class {
 	#name : #FakerDeLocales,
 	#superclass : #FakerLocales,
+	#instVars : [
+		'internetDomainSuffixes'
+	],
 	#category : #'Faker-Locales'
 }
 
@@ -217,13 +220,40 @@ FakerDeLocales >> companySuffixes [
 ]
 
 { #category : #internet }
+FakerDeLocales >> defaultInternetDomainSuffixes [
+	^ #( 'com' 'info' 'name' 'net' 'org' 'de' 'ch' 'fr' 'it' 'tv' 'to' 'us' 'ar' )
+]
+
+{ #category : #internet }
 FakerDeLocales >> internetCookieName [
 	^ self sample: self internetCookieNames
 ]
 
 { #category : #internet }
 FakerDeLocales >> internetCookieNames [
-	^ #( 'CONSENT' 'NID' 'ANID' '__ga' '__cfduid' '__utma' '__gads' '__gid' '__user_id' 'sid' )
+	^ #( 
+		'CONSENT' 
+		'NID' 
+		'OID'
+		'ANID' 
+		'PHPSESSID'
+		'SERVERID'
+		'__ga' 
+		'__cfduid' 
+		'__utma' 
+		'__gads' 
+		'__gid' 
+		'__user_id' 
+		'__ra'
+		'_fbp'
+		'sid' 
+		'cid'
+		'uid'
+		'utag_main'
+		'tuuid'
+		'euconsent'
+		'audit'
+	)
 ]
 
 { #category : #internet }
@@ -248,7 +278,13 @@ FakerDeLocales >> internetDomainSuffix [
 
 { #category : #internet }
 FakerDeLocales >> internetDomainSuffixes [
-	^ #( 'com' 'info' 'name' 'net' 'org' 'de' 'ch' )
+	^ internetDomainSuffixes ifNil: [ 
+		internetDomainSuffixes := self defaultInternetDomainSuffixes ]
+]
+
+{ #category : #internet }
+FakerDeLocales >> internetDomainSuffixes: aCollectionOfSuffixes [
+	internetDomainSuffixes := aCollectionOfSuffixes
 ]
 
 { #category : #internet }
