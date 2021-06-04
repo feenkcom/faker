@@ -1,7 +1,5 @@
 "
-{{{
-de:
-  faker:
+faker:
     address:
       city_prefix: [Nord, Ost, West, Süd, Neu, Alt, Bad, Groß, Klein, Schön]
       city_suffix: [stadt, dorf, land, scheid, burg, berg, heim, hagen, feld, brunn, grün]
@@ -174,7 +172,8 @@ de:
       ]
       catch_phrases_TODO: []
       quotes_TODO: []
-}}}
+
+
 "
 Class {
 	#name : #FakerDeLocales,
