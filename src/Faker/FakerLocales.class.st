@@ -1,6 +1,7 @@
 "
 de
 	^ FakerDeLocales uniqueInstance
+
 "
 Class {
 	#name : #FakerLocales,
