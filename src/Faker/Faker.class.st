@@ -73,8 +73,9 @@ Faker >> letters: aSize [
 	| availableChars |
 	availableChars := Character alphabet.
 	^ String streamContents: [ :aStream |
-		aSize timesRepeat: [ 
-			aStream nextPut: (availableChars atRandom: self random) ] ]
+		aStream nextPutAll: (self 
+			sample: availableChars 
+			ofSize: aSize) ] 
 ]
 
 { #category : 'accessing' }
@@ -177,6 +178,18 @@ Faker >> sample: aCollection [
 ]
 
 { #category : 'actions' }
+Faker >> sample: aCollection ofSize: aSize [
+	"Return a given numer of items from the collection.
+	Each value can be sampled multiple times."
+	<return: #Object>
+	self 
+		assert: [ aCollection isNotNil ]
+		description: [ 'Only collections can be sampled' ].
+	^ aSize timesCollect: [
+		self sample: aCollection ]
+]
+
+{ #category : 'actions' }
 Faker >> shuffle: aSequenceableCollection [
 	"Randomly shuffle collection items"
 	<return: #SequenceableCollection>
@@ -184,4 +197,18 @@ Faker >> shuffle: aSequenceableCollection [
 		assert: [ aSequenceableCollection isCollection ]
 		description: [ 'Only collections can be shuffled' ].
 	^ aSequenceableCollection shuffleBy: self random 
+]
+
+{ #category : 'actions' }
+Faker >> uniqueSample: aCollection ofSize: aSize [
+	"Return a given numer of items from the collection. 
+	Ensure every value is sampled at most once."
+	| indexes |
+	<return: #Object>
+	self 
+		assert: [ aCollection isNotNil ]
+		description: [ 'Only collections can be sampled' ].
+	indexes := self shuffle: (1 to: aCollection size).
+	^ aSize timesCollect: [ :index |
+		aCollection at: index ]
 ]
