@@ -1,28 +1,28 @@
 Class {
-	#name : #FakerChar,
-	#superclass : #Object,
+	#name : 'FakerChar',
+	#superclass : 'Object',
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #'Faker-Modules'
+	#category : 'Faker-Modules'
 }
 
-{ #category : #cleanup }
+{ #category : 'cleanup' }
 FakerChar class >> cleanUp [
 	self resetUniqueInstance
 ]
 
-{ #category : #cleanup }
+{ #category : 'cleanup' }
 FakerChar class >> resetUniqueInstance [
 	uniqueInstance := nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FakerChar class >> uniqueInstance [
 	^ uniqueInstance ifNil: [ uniqueInstance := self new ]
 ]
 
-{ #category : #selection }
+{ #category : 'selection' }
 FakerChar >> prepare: aString [
 	"Replace unwanted characters, e.g., äöüß and others. 
 	For now we only convert to lowercase"

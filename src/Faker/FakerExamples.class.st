@@ -1,10 +1,10 @@
 Class {
-	#name : #FakerExamples,
-	#superclass : #Object,
-	#category : #'Faker-Examples'
+	#name : 'FakerExamples',
+	#superclass : 'Object',
+	#category : 'Faker-Examples'
 }
 
-{ #category : #company }
+{ #category : 'company' }
 FakerExamples >> companyName [
 	<gtExample>
 	| aResult |
@@ -14,14 +14,14 @@ FakerExamples >> companyName [
 	^ aResult
 ]
 
-{ #category : #base }
+{ #category : 'base' }
 FakerExamples >> faker [
 	<gtExample>
 	^ Faker new.
 	
 ]
 
-{ #category : #internet }
+{ #category : 'internet' }
 FakerExamples >> internetCookieName [
 	<gtExample>
 	| aResult |
@@ -31,7 +31,7 @@ FakerExamples >> internetCookieName [
 	^ aResult
 ]
 
-{ #category : #internet }
+{ #category : 'internet' }
 FakerExamples >> internetDomainName [
 	<gtExample>
 	| aResult |
@@ -42,7 +42,7 @@ FakerExamples >> internetDomainName [
 	^ aResult
 ]
 
-{ #category : #internet }
+{ #category : 'internet' }
 FakerExamples >> internetDomainNameWithSubDomain [
 	<gtExample>
 	| aResult |
@@ -53,7 +53,7 @@ FakerExamples >> internetDomainNameWithSubDomain [
 	^ aResult
 ]
 
-{ #category : #internet }
+{ #category : 'internet' }
 FakerExamples >> internetUrl [
 	<gtExample>
 	| aResult |
@@ -63,7 +63,7 @@ FakerExamples >> internetUrl [
 	^ aResult
 ]
 
-{ #category : #internet }
+{ #category : 'internet' }
 FakerExamples >> internetUsername [
 	<gtExample>
 	| aResult |
@@ -73,7 +73,7 @@ FakerExamples >> internetUsername [
 	^ aResult
 ]
 
-{ #category : #base }
+{ #category : 'base' }
 FakerExamples >> numerifyWithZeros [
 	<gtExample>
 	| aResult |
@@ -82,7 +82,7 @@ FakerExamples >> numerifyWithZeros [
 	^ aResult
 ]
 
-{ #category : #base }
+{ #category : 'base' }
 FakerExamples >> numerifyWithoutZeros [
 	<gtExample>
 	| aResult |
@@ -91,7 +91,7 @@ FakerExamples >> numerifyWithoutZeros [
 	^ aResult
 ]
 
-{ #category : #person }
+{ #category : 'person' }
 FakerExamples >> personFirstName [
 	<gtExample>
 	| aResult |
@@ -101,7 +101,7 @@ FakerExamples >> personFirstName [
 	^ aResult
 ]
 
-{ #category : #person }
+{ #category : 'person' }
 FakerExamples >> personLastName [
 	<gtExample>
 	| aResult |
@@ -111,7 +111,7 @@ FakerExamples >> personLastName [
 	^ aResult
 ]
 
-{ #category : #base }
+{ #category : 'base' }
 FakerExamples >> prepareString [
 	<gtExample>
 	| aString aResult |
@@ -121,7 +121,7 @@ FakerExamples >> prepareString [
 	^ aResult
 ]
 
-{ #category : #base }
+{ #category : 'base' }
 FakerExamples >> shuffleArrayOfNumbers [
 	<gtExample>
 	| aCollection aResult |

@@ -1,13 +1,13 @@
 Class {
-	#name : #FakerModule,
-	#superclass : #Object,
+	#name : 'FakerModule',
+	#superclass : 'Object',
 	#instVars : [
 		'base'
 	],
-	#category : #'Faker-Modules'
+	#category : 'Faker-Modules'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FakerModule >> base [
 	self 
 		assert: [ base isNotNil ] 
@@ -15,7 +15,7 @@ FakerModule >> base [
 	^ base
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FakerModule >> base: aFaker [
 	self 
 		assert: [ aFaker isNotNil ] 
@@ -23,19 +23,19 @@ FakerModule >> base: aFaker [
 	base := aFaker
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FakerModule >> locales [
 	<return: #FakerLocales>
 	^ self base locales
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FakerModule >> properties [
 	<return: #FakerLocales>
 	^ self base properties
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 FakerModule >> sample: aCollection [
 	"Return any random item from the collection"
 	<return: #Object>
