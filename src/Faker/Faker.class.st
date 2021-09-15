@@ -190,6 +190,45 @@ Faker >> sample: aCollection ofSize: aSize [
 ]
 
 { #category : 'actions' }
+Faker >> sample: aCollection ofSize: aSize withCumulativeWeights: aCollectionOfCumulativeWeights [
+	^ aSize timesCollect: [ 
+		self 
+			sample: aCollection 
+			withCumulativeWeights: aCollectionOfCumulativeWeights ]
+]
+
+{ #category : 'actions' }
+Faker >> sample: aCollection ofSize: aSize withWeights: aCollectionOfWeights [
+	| cumulativeWeights currentSum |
+	<return: #Object>
+	cumulativeWeights := Array new: aCollectionOfWeights size.
+	currentSum := 0.
+	aCollectionOfWeights withIndexDo: [ :aWeight :anIndex | 
+		currentSum := currentSum + aWeight.
+		cumulativeWeights at: anIndex put: currentSum ].
+	^ self 
+		sample: aCollection 
+		ofSize: aSize
+		withCumulativeWeights: cumulativeWeights
+]
+
+{ #category : 'actions' }
+Faker >> sample: aCollection withCumulativeWeights: aCollectionOfCumulativeWeights [
+	| totalWeight randomValue |
+	
+	totalWeight := aCollectionOfCumulativeWeights last.
+	randomValue := self random nextInteger: totalWeight.
+	aCollectionOfCumulativeWeights withIndexDo: [ :aWeight :index |
+		aWeight >= randomValue ifTrue: [ ^ aCollection at: index ] ].
+	Error signal.
+]
+
+{ #category : 'actions' }
+Faker >> sample: aCollection withWeights: aCollectionOfWeights [
+	^ (self sample: aCollection ofSize: 1 withWeights: aCollectionOfWeights) first
+]
+
+{ #category : 'actions' }
 Faker >> shuffle: aSequenceableCollection [
 	"Randomly shuffle collection items"
 	<return: #SequenceableCollection>
