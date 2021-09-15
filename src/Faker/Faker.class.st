@@ -247,7 +247,7 @@ Faker >> uniqueSample: aCollection ofSize: aSize [
 	self 
 		assert: [ aCollection isNotNil ]
 		description: [ 'Only collections can be sampled' ].
-	indexes := self shuffle: (1 to: aCollection size).
+	indexes := self shuffle: (1 to: aCollection size) asOrderedCollection.
 	^ aSize timesCollect: [ :index |
 		aCollection at: index ]
 ]
