@@ -16,7 +16,7 @@ FakerLocales class >> de [
 
 { #category : 'public' }
 FakerLocales class >> default [
-	^ self de
+	^ self en
 ]
 
 { #category : 'public' }
