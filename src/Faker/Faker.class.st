@@ -133,6 +133,11 @@ Faker >> numerify: aNumberPattern leadingZero: aBoolean [
 	^ aResult
 ]
 
+{ #category : 'accessing - modules' }
+Faker >> personNameGenerator [
+	^ FakerName new base: self
+]
+
 { #category : 'actions' }
 Faker >> prepareString: aString [ 
 	<return: #String>

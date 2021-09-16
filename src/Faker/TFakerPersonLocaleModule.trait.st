@@ -16,18 +16,6 @@ TFakerPersonLocaleModule >> personLastName [
 ]
 
 { #category : 'person' }
-TFakerPersonLocaleModule >> personNobilityTitle [
-	<return: #String>
-	^ self base sample: self personNobilityTitles 
-]
-
-{ #category : 'person' }
-TFakerPersonLocaleModule >> personNobilityTitlePrefix [
-	<return: #String>
-	^ self base sample: self personNobilityTitlePrefixes 
-]
-
-{ #category : 'person' }
 TFakerPersonLocaleModule >> personPrefix [
 	<return: #String>
 	^ self base sample: self personPrefixes 

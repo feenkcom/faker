@@ -17,5 +17,5 @@ FakerEnCompanyLocaleModule >> companyNames [
 
 { #category : 'company' }
 FakerEnCompanyLocaleModule >> companySuffixes [
-	^ #( 'Inc' . 'and Sons' . 'LLC' . 'Group' )
+	^ #( 'Inc' 'and Sons' 'LLC' 'Group' )
 ]

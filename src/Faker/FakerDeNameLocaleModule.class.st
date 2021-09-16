@@ -32,6 +32,18 @@ FakerDeNameLocaleModule >> personNames [
 	}
 ]
 
+{ #category : 'as yet unclassified' }
+FakerDeNameLocaleModule >> personNobilityTitle [
+	<return: #String>
+	^ self base sample: self personNobilityTitles 
+]
+
+{ #category : 'as yet unclassified' }
+FakerDeNameLocaleModule >> personNobilityTitlePrefix [
+	<return: #String>
+	^ self base sample: self personNobilityTitlePrefixes 
+]
+
 { #category : 'person' }
 FakerDeNameLocaleModule >> personNobilityTitlePrefixes [
 	^ #( 'zu' 'von' 'vom' 'von der' )

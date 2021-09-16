@@ -167,6 +167,12 @@ Tracy' lines
 ]
 
 { #category : 'accessing' }
+FakerName >> firstAndLastName [
+	<return: #String>
+	^ self firstName, ' ', self lastName 
+]
+
+{ #category : 'accessing' }
 FakerName >> firstName [
 	<return: #String>
 	^ self locales nameModule personFirstName
