@@ -169,11 +169,11 @@ Tracy' lines
 { #category : 'accessing' }
 FakerName >> firstName [
 	<return: #String>
-	^ self locales personFirstName
+	^ self locales nameModule personFirstName
 ]
 
 { #category : 'accessing' }
 FakerName >> lastName [
 	<return: #String>
-	^ self locales personLastName
+	^ self locales nameModule personLastName
 ]
