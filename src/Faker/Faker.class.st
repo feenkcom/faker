@@ -54,7 +54,7 @@ Faker >> defaultRandom [
 { #category : 'actions' }
 Faker >> firstName [
 	<return: #String>
-	^ self name firstName
+	^ self personNameGenerator firstName
 ]
 
 { #category : 'accessing - modules' }
@@ -65,7 +65,7 @@ Faker >> internet [
 { #category : 'actions' }
 Faker >> lastName [
 	<return: #String>
-	^ self name lastName
+	^ self personNameGenerator lastName
 ]
 
 { #category : 'actions' }
@@ -90,11 +90,6 @@ Faker >> locales: aFakerLocales [
 		assert: [ aFakerLocales isNotNil ] 
 		description: [ 'Locales must be non-nil' ].
 	locales := aFakerLocales
-]
-
-{ #category : 'accessing - modules' }
-Faker >> name [
-	^ FakerName new base: self
 ]
 
 { #category : 'actions' }
