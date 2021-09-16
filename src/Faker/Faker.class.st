@@ -229,6 +229,13 @@ Faker >> sample: aCollection withWeights: aCollectionOfWeights [
 ]
 
 { #category : 'actions' }
+Faker >> samplewithWeights: aCollectionOfValusAndWeights [
+	^ self
+		sample: aCollectionOfValusAndWeights keys
+		withWeights: aCollectionOfValusAndWeights values
+]
+
+{ #category : 'actions' }
 Faker >> shuffle: aSequenceableCollection [
 	"Randomly shuffle collection items"
 	<return: #SequenceableCollection>
@@ -249,5 +256,5 @@ Faker >> uniqueSample: aCollection ofSize: aSize [
 		description: [ 'Only collections can be sampled' ].
 	indexes := self shuffle: (1 to: aCollection size) asOrderedCollection.
 	^ aSize timesCollect: [ :index |
-		aCollection at: index ]
+		aCollection at: (indexes at: index) ]
 ]
