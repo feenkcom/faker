@@ -92,6 +92,11 @@ Faker >> locales: aFakerLocales [
 	locales := aFakerLocales
 ]
 
+{ #category : 'accessing - modules' }
+Faker >> multiplier [
+	^ FakerMultiplier new base: self
+]
+
 { #category : 'actions' }
 Faker >> numerify: aNumberPattern [
 	"Replace # characters by numbers."

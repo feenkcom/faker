@@ -29,6 +29,12 @@ FakerModule >> locales [
 	^ self base locales
 ]
 
+{ #category : 'as yet unclassified' }
+FakerModule >> multiplierFor: aSelector [
+	^ self base multiplier 
+		target: [ self perform: aSelector ]
+]
+
 { #category : 'accessing' }
 FakerModule >> properties [
 	<return: #FakerLocales>
