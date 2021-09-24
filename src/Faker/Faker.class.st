@@ -98,6 +98,18 @@ Faker >> multiplier [
 ]
 
 { #category : 'actions' }
+Faker >> nextIntegerBetween: lowerBound and: higherBound [
+	^ self random 
+		nextIntegerBetween: lowerBound and: higherBound
+]
+
+{ #category : 'actions' }
+Faker >> nextScaledIntegerBetween: lowerBound and: higherBound [
+	^ self scaleFactor * (self random 
+		nextIntegerBetween: lowerBound and: higherBound)
+]
+
+{ #category : 'actions' }
 Faker >> numerify: aNumberPattern [
 	"Replace # characters by numbers."
 	<return: #String>
