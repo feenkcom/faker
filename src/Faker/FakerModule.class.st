@@ -29,12 +29,12 @@ FakerModule >> locales [
 	^ self base locales
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 FakerModule >> multiplier [
 	^ self multiplierFor: #sample
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 FakerModule >> multiplierFor: aSelector [
 	^ self base multiplier 
 		target: [ self perform: aSelector ]
