@@ -121,6 +121,20 @@ FakerProperties >> postCopy [
 	dictionary := dictionary copy
 ]
 
+{ #category : 'accessing' }
+FakerProperties >> scaleFactor [ 
+	^ self 
+		at: #scaleFactor 
+		ifAbsent: [ 1 ]
+]
+
+{ #category : 'accessing' }
+FakerProperties >> scaleFactor: anInteger [
+	^ self 
+		at: #scaleFactor 
+		put: anInteger
+]
+
 { #category : 'date' }
 FakerProperties >> toDateAndTime [
 	<return: #DateAndTime or: nil>

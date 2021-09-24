@@ -240,6 +240,11 @@ Faker >> samplewithWeights: aCollectionOfValusAndWeights [
 		withWeights: aCollectionOfValusAndWeights values
 ]
 
+{ #category : 'accessing' }
+Faker >> scaleFactor [
+	^ self properties scaleFactor
+]
+
 { #category : 'actions' }
 Faker >> shuffle: aSequenceableCollection [
 	"Randomly shuffle collection items"
