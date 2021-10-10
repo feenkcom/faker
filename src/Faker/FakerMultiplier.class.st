@@ -1,24 +1,24 @@
 Class {
-	#name : 'FakerMultiplier',
-	#superclass : 'FakerOperationModule',
+	#name : #FakerMultiplier,
+	#superclass : #FakerOperationModule,
 	#instVars : [
 		'targetComputation'
 	],
 	#category : 'Faker-Modules'
 }
 
-{ #category : 'api' }
+{ #category : #api }
 FakerMultiplier >> sampleOfSize: aSize [
 	^ aSize timesCollect: [ 
 		targetComputation value ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 FakerMultiplier >> target: aBlock [
 	targetComputation := aBlock
 ]
 
-{ #category : 'api' }
+{ #category : #api }
 FakerMultiplier >> uniqueSampleOfSize: aSize [
 	| currentSamples  |
 	currentSamples := OrderedCollection new: aSize.

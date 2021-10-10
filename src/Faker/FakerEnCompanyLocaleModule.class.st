@@ -1,12 +1,12 @@
 Class {
-	#name : 'FakerEnCompanyLocaleModule',
-	#superclass : 'FakerEnLocaleModule',
+	#name : #FakerEnCompanyLocaleModule,
+	#superclass : #FakerEnLocaleModule,
 	#traits : 'TFakerCompanyLocaleModule',
 	#classTraits : 'TFakerCompanyLocaleModule classTrait',
 	#category : 'Faker-Locales'
 }
 
-{ #category : 'company' }
+{ #category : #company }
 FakerEnCompanyLocaleModule >> companyNames [
 	^ {
 			[ ( String space join: { self base lastName . self companySuffix } ) ].
@@ -15,7 +15,7 @@ FakerEnCompanyLocaleModule >> companyNames [
 		}
 ]
 
-{ #category : 'company' }
+{ #category : #company }
 FakerEnCompanyLocaleModule >> companySuffixes [
 	^ #( 'Inc' 'and Sons' 'LLC' 'Group' )
 ]

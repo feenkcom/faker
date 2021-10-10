@@ -176,30 +176,30 @@ faker:
 
 "
 Class {
-	#name : 'FakerDeLocales',
-	#superclass : 'FakerLocales',
+	#name : #FakerDeLocales,
+	#superclass : #FakerLocales,
 	#instVars : [
 		'internetDomainSuffixes'
 	],
 	#category : 'Faker-Locales'
 }
 
-{ #category : 'module' }
+{ #category : #module }
 FakerDeLocales >> companyModule [
 	^ FakerDeCompanyLocaleModule new base: self base
 ]
 
-{ #category : 'internet' }
+{ #category : #internet }
 FakerDeLocales >> defaultInternetDomainSuffixes [
 	^ #( 'com' 'info' 'name' 'net' 'org' 'de' 'ch' 'fr' 'it' 'tv' 'to' 'us' 'ar' )
 ]
 
-{ #category : 'internet' }
+{ #category : #internet }
 FakerDeLocales >> internetCookieName [
 	^ self sample: self internetCookieNames
 ]
 
-{ #category : 'internet' }
+{ #category : #internet }
 FakerDeLocales >> internetCookieNames [
 	^ #( 
 		'CONSENT' 
@@ -226,12 +226,12 @@ FakerDeLocales >> internetCookieNames [
 	)
 ]
 
-{ #category : 'internet' }
+{ #category : #internet }
 FakerDeLocales >> internetCookieValue [
 	^ self sample: self internetCookieValues
 ]
 
-{ #category : 'internet' }
+{ #category : #internet }
 FakerDeLocales >> internetCookieValues [
 	^ { '1'. ''. 'true'. 'null'. '0'. 'de_DE'. 'yes'. 'EUR'. 'no'. 
 			self base numerify: '##########-############-#############-###'.
@@ -241,33 +241,33 @@ FakerDeLocales >> internetCookieValues [
 			self base numerify: '###.#################'. }
 ]
 
-{ #category : 'internet' }
+{ #category : #internet }
 FakerDeLocales >> internetDomainSuffix [
 	^ self sample: self internetDomainSuffixes
 ]
 
-{ #category : 'internet' }
+{ #category : #internet }
 FakerDeLocales >> internetDomainSuffixes [
 	^ internetDomainSuffixes ifNil: [ 
 		internetDomainSuffixes := self defaultInternetDomainSuffixes ]
 ]
 
-{ #category : 'internet' }
+{ #category : #internet }
 FakerDeLocales >> internetDomainSuffixes: aCollectionOfSuffixes [
 	internetDomainSuffixes := aCollectionOfSuffixes
 ]
 
-{ #category : 'internet' }
+{ #category : #internet }
 FakerDeLocales >> internetFreeEmailDomain [
 	^ self sample: self internetFreeEmailDomains
 ]
 
-{ #category : 'internet' }
+{ #category : #internet }
 FakerDeLocales >> internetFreeEmailDomains [
 	^ #( 'gmail.com' 'yahoo.com' 'hotmail.com' 'gmx.de' 'web.de' 'mail.de' 'freenet.de' )
 ]
 
-{ #category : 'module' }
+{ #category : #module }
 FakerDeLocales >> nameModule [
 	^ FakerDeNameLocaleModule new base: self base
 ]

@@ -1,5 +1,5 @@
 Class {
-	#name : 'FakerOperationModule',
-	#superclass : 'FakerModule',
+	#name : #FakerOperationModule,
+	#superclass : #FakerModule,
 	#category : 'Faker-Modules'
 }

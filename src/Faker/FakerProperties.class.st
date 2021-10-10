@@ -1,34 +1,34 @@
 Class {
-	#name : 'FakerProperties',
-	#superclass : 'FakerModule',
+	#name : #FakerProperties,
+	#superclass : #FakerModule,
 	#instVars : [
 		'dictionary'
 	],
 	#category : 'Faker-Modules'
 }
 
-{ #category : 'accessing - basic properties' }
+{ #category : #'accessing - basic properties' }
 FakerProperties >> at: aSymbol [
 	^ self dictionary
 		at: aSymbol 
 		ifAbsent: [ self error: 'Property must be set before using it' ]
 ]
 
-{ #category : 'accessing - basic properties' }
+{ #category : #'accessing - basic properties' }
 FakerProperties >> at: aSymbol ifAbsent: anAbsentBlock [
 	^ self dictionary 
 		at: aSymbol 
 		ifAbsent: anAbsentBlock
 ]
 
-{ #category : 'accessing - basic properties' }
+{ #category : #'accessing - basic properties' }
 FakerProperties >> at: aSymbol ifAbsentPut: aValue [
 	^ self dictionary 
 		at: aSymbol 
 		ifAbsentPut: aValue
 ]
 
-{ #category : 'accessing - basic properties' }
+{ #category : #'accessing - basic properties' }
 FakerProperties >> at: aSymbol ifPresent: aPresentBlock ifAbsent: anAbsentBlock [
 	^ self dictionary 
 		at: aSymbol 
@@ -36,14 +36,14 @@ FakerProperties >> at: aSymbol ifPresent: aPresentBlock ifAbsent: anAbsentBlock 
 		ifAbsent: anAbsentBlock
 ]
 
-{ #category : 'accessing - basic properties' }
+{ #category : #'accessing - basic properties' }
 FakerProperties >> at: aSymbol put: aValue [
 	^ self dictionary 
 		at: aSymbol 
 		put: aValue
 ]
 
-{ #category : 'date' }
+{ #category : #date }
 FakerProperties >> backwardDuration [
 	<return: #Duration or: nil>
 	^ self 
@@ -51,19 +51,19 @@ FakerProperties >> backwardDuration [
 		ifAbsent: [ nil ]
 ]
 
-{ #category : 'date' }
+{ #category : #date }
 FakerProperties >> backwardDuration: aDuration [
 	^ self 
 		at: #backwardDuration 
 		put: aDuration
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 FakerProperties >> dictionary [
 	^ dictionary
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 FakerProperties >> dictionary: aDictionary [
 	self 
 		assert: [ aDictionary isNotNil ] 
@@ -71,7 +71,7 @@ FakerProperties >> dictionary: aDictionary [
 	dictionary := aDictionary
 ]
 
-{ #category : 'date' }
+{ #category : #date }
 FakerProperties >> forwardDuration [
 	<return: #Duration or: nil>
 	^ self 
@@ -79,14 +79,14 @@ FakerProperties >> forwardDuration [
 		ifAbsent: [ nil ]
 ]
 
-{ #category : 'date' }
+{ #category : #date }
 FakerProperties >> forwardDuration: aDuration [
 	^ self 
 		at: #forwardDuration 
 		put: aDuration
 ]
 
-{ #category : 'date' }
+{ #category : #date }
 FakerProperties >> fromDateAndTime [
 	<return: #DateAndTime or: nil>
 	^ self 
@@ -94,20 +94,20 @@ FakerProperties >> fromDateAndTime [
 		ifAbsent: [ nil ]
 ]
 
-{ #category : 'date' }
+{ #category : #date }
 FakerProperties >> fromDateAndTime: aDateAndTime [
 	^ self 
 		at: #fromDateAndTime 
 		put: aDateAndTime
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 FakerProperties >> initialize [
 	super initialize.
 	dictionary := Dictionary new.
 ]
 
-{ #category : 'date' }
+{ #category : #date }
 FakerProperties >> isDateRangeDefined [
 	<return: #Boolean>
 	^ self fromDateAndTime isNotNil or: [ 
@@ -116,26 +116,26 @@ FakerProperties >> isDateRangeDefined [
 				self forwardDuration isNotNil ] ] ]
 ]
 
-{ #category : 'copying' }
+{ #category : #copying }
 FakerProperties >> postCopy [
 	dictionary := dictionary copy
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 FakerProperties >> scaleFactor [ 
 	^ self 
 		at: #scaleFactor 
 		ifAbsent: [ 1 ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 FakerProperties >> scaleFactor: anInteger [
 	^ self 
 		at: #scaleFactor 
 		put: anInteger
 ]
 
-{ #category : 'date' }
+{ #category : #date }
 FakerProperties >> toDateAndTime [
 	<return: #DateAndTime or: nil>
 	^ self 
@@ -143,7 +143,7 @@ FakerProperties >> toDateAndTime [
 		ifAbsent: [ nil ]
 ]
 
-{ #category : 'date' }
+{ #category : #date }
 FakerProperties >> toDateAndTime: aDateAndTime [
 	^ self 
 		at: #toDateAndTime 

@@ -1,6 +1,6 @@
 Class {
-	#name : 'Faker',
-	#superclass : 'Object',
+	#name : #Faker,
+	#superclass : #Object,
 	#instVars : [
 		'locales',
 		'random',
@@ -11,64 +11,69 @@ Class {
 		'Numbers',
 		'ULetters'
 	],
-	#category : 'Faker-Core'
+	#category : #'Faker-Core'
 }
 
-{ #category : 'class initialization' }
+{ #category : #'class initialization' }
 Faker class >> initialize [
 	Numbers := 0 to: 9.
 	ULetters := Character alphabet.
    Letters := ULetters, ULetters asUppercase.
 ]
 
-{ #category : 'accessing - modules' }
+{ #category : #'accessing - modules' }
 Faker >> char [
 	^ FakerChar uniqueInstance
 ]
 
-{ #category : 'accessing - modules' }
+{ #category : #'accessing - modules' }
 Faker >> company [
 	^ FakerCompany new base: self
 ]
 
-{ #category : 'accessing - modules' }
+{ #category : #'accessing - modules' }
 Faker >> country [
 	^ FakerCountry new base: self
 ]
 
-{ #category : 'accessing - modules' }
+{ #category : #'accessing - modules' }
 Faker >> date [
 	^ FakerDate new base: self
 ]
 
-{ #category : 'defaults' }
+{ #category : #defaults }
 Faker >> defaultLocales [
 	^ FakerLocales default
 ]
 
-{ #category : 'defaults' }
+{ #category : #defaults }
 Faker >> defaultRandom [
 	^ SharedRandom globalGenerator
 ]
 
-{ #category : 'actions' }
+{ #category : #actions }
 Faker >> firstName [
 	<return: #String>
 	^ self personNameGenerator firstName
 ]
 
-{ #category : 'accessing - modules' }
+{ #category : #'accessing - modules' }
+Faker >> idGenerator [
+	^ FakerId new base: self
+]
+
+{ #category : #'accessing - modules' }
 Faker >> internet [
 	^ FakerInternet new base: self
 ]
 
-{ #category : 'actions' }
+{ #category : #actions }
 Faker >> lastName [
 	<return: #String>
 	^ self personNameGenerator lastName
 ]
 
-{ #category : 'actions' }
+{ #category : #actions }
 Faker >> letters: aSize [
 	| availableChars |
 	availableChars := Character alphabet.
@@ -78,13 +83,13 @@ Faker >> letters: aSize [
 			ofSize: aSize) ] 
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 Faker >> locales [
 	<return: #FakerLocales>
 	^ locales ifNil: [ locales := FakerLocales default base: self ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 Faker >> locales: aFakerLocales [
 	self 
 		assert: [ aFakerLocales isNotNil ] 
@@ -92,31 +97,31 @@ Faker >> locales: aFakerLocales [
 	locales := aFakerLocales
 ]
 
-{ #category : 'accessing - modules' }
+{ #category : #'accessing - modules' }
 Faker >> multiplier [
 	^ FakerMultiplier new base: self
 ]
 
-{ #category : 'actions' }
+{ #category : #actions }
 Faker >> nextIntegerBetween: lowerBound and: higherBound [
 	^ self random 
 		nextIntegerBetween: lowerBound and: higherBound
 ]
 
-{ #category : 'actions' }
+{ #category : #actions }
 Faker >> nextScaledIntegerBetween: lowerBound and: higherBound [
 	^ self scaleFactor * (self random 
 		nextIntegerBetween: lowerBound and: higherBound)
 ]
 
-{ #category : 'actions' }
+{ #category : #actions }
 Faker >> numerify: aNumberPattern [
 	"Replace # characters by numbers."
 	<return: #String>
 	^ self numerify: aNumberPattern leadingZero: false
 ]
 
-{ #category : 'actions' }
+{ #category : #actions }
 Faker >> numerify: aNumberPattern leadingZero: aBoolean [
 	"Replace # characters by numbers. 
 	 Initial number can be a zero if aBoolean is true"
@@ -145,24 +150,24 @@ Faker >> numerify: aNumberPattern leadingZero: aBoolean [
 	^ aResult
 ]
 
-{ #category : 'accessing - modules' }
+{ #category : #'accessing - modules' }
 Faker >> personNameGenerator [
 	^ FakerName new base: self
 ]
 
-{ #category : 'actions' }
+{ #category : #actions }
 Faker >> prepareString: aString [ 
 	<return: #String>
 	^ self char prepare: aString
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 Faker >> properties [
 	<return: #FakerProperties>
 	^ properties ifNil: [ properties := FakerProperties new base: self ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 Faker >> properties: aFakerProperties [
 	self 
 		assert: [ aFakerProperties isNotNil ] 
@@ -170,13 +175,13 @@ Faker >> properties: aFakerProperties [
 	properties := aFakerProperties
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 Faker >> random [
 	<return: #Random>
 	^ random ifNil: [ random := self defaultRandom ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 Faker >> random: aRandom [
 	self 
 		assert: [ aRandom isNotNil ] 
@@ -184,7 +189,7 @@ Faker >> random: aRandom [
 	random := aRandom
 ]
 
-{ #category : 'actions' }
+{ #category : #actions }
 Faker >> sample: aCollection [
 	"Return any random item from the collection"
 	<return: #Object>
@@ -194,7 +199,7 @@ Faker >> sample: aCollection [
 	^ aCollection atRandom: self random.
 ]
 
-{ #category : 'actions' }
+{ #category : #actions }
 Faker >> sample: aCollection ofSize: aSize [
 	"Return a given numer of items from the collection.
 	Each value can be sampled multiple times."
@@ -206,7 +211,7 @@ Faker >> sample: aCollection ofSize: aSize [
 		self sample: aCollection ]
 ]
 
-{ #category : 'actions' }
+{ #category : #actions }
 Faker >> sample: aCollection ofSize: aSize withCumulativeWeights: aCollectionOfCumulativeWeights [
 	^ aSize timesCollect: [ 
 		self 
@@ -214,7 +219,7 @@ Faker >> sample: aCollection ofSize: aSize withCumulativeWeights: aCollectionOfC
 			withCumulativeWeights: aCollectionOfCumulativeWeights ]
 ]
 
-{ #category : 'actions' }
+{ #category : #actions }
 Faker >> sample: aCollection ofSize: aSize withWeights: aCollectionOfWeights [
 	| cumulativeWeights currentSum |
 	<return: #Object>
@@ -229,7 +234,7 @@ Faker >> sample: aCollection ofSize: aSize withWeights: aCollectionOfWeights [
 		withCumulativeWeights: cumulativeWeights
 ]
 
-{ #category : 'actions' }
+{ #category : #actions }
 Faker >> sample: aCollection withCumulativeWeights: aCollectionOfCumulativeWeights [
 	| totalWeight randomValue |
 	
@@ -240,24 +245,24 @@ Faker >> sample: aCollection withCumulativeWeights: aCollectionOfCumulativeWeigh
 	Error signal.
 ]
 
-{ #category : 'actions' }
+{ #category : #actions }
 Faker >> sample: aCollection withWeights: aCollectionOfWeights [
 	^ (self sample: aCollection ofSize: 1 withWeights: aCollectionOfWeights) first
 ]
 
-{ #category : 'actions' }
+{ #category : #actions }
 Faker >> samplewithWeights: aCollectionOfValusAndWeights [
 	^ self
 		sample: aCollectionOfValusAndWeights keys
 		withWeights: aCollectionOfValusAndWeights values
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 Faker >> scaleFactor [
 	^ self properties scaleFactor
 ]
 
-{ #category : 'actions' }
+{ #category : #actions }
 Faker >> shuffle: aSequenceableCollection [
 	"Randomly shuffle collection items"
 	<return: #SequenceableCollection>
@@ -267,7 +272,7 @@ Faker >> shuffle: aSequenceableCollection [
 	^ aSequenceableCollection shuffleBy: self random 
 ]
 
-{ #category : 'actions' }
+{ #category : #actions }
 Faker >> uniqueSample: aCollection ofSize: aSize [
 	"Return a given numer of items from the collection. 
 	Ensure every value is sampled at most once."

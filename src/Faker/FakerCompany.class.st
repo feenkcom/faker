@@ -1,16 +1,16 @@
 Class {
-	#name : 'FakerCompany',
-	#superclass : 'FakerModule',
+	#name : #FakerCompany,
+	#superclass : #FakerModule,
 	#category : 'Faker-Modules'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 FakerCompany >> name [
 	<return: #String>
 	^ self locales companyModule companyName
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 FakerCompany >> suffix [
 	<return: #String>
 	^ self locales companyModule companySuffix

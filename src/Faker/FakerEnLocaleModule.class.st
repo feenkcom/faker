@@ -1,5 +1,5 @@
 Class {
-	#name : 'FakerEnLocaleModule',
-	#superclass : 'FakerLocaleModule',
+	#name : #FakerEnLocaleModule,
+	#superclass : #FakerLocaleModule,
 	#category : 'Faker-Locales'
 }

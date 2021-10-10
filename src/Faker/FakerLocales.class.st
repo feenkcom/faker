@@ -4,45 +4,45 @@ de
 
 "
 Class {
-	#name : 'FakerLocales',
-	#superclass : 'FakerModule',
+	#name : #FakerLocales,
+	#superclass : #FakerModule,
 	#category : 'Faker-Locales'
 }
 
-{ #category : 'public' }
+{ #category : #public }
 FakerLocales class >> de [
 	^ FakerDeLocales new
 ]
 
-{ #category : 'public' }
+{ #category : #public }
 FakerLocales class >> default [
 	^ self en
 ]
 
-{ #category : 'public' }
+{ #category : #public }
 FakerLocales class >> en [
 	^ FakerEnLocales new
 ]
 
-{ #category : 'country' }
+{ #category : #country }
 FakerLocales >> countryIsoCode [
 	<return: #String>
 	^ self countryNamesAndIsoCode second
 ]
 
-{ #category : 'country' }
+{ #category : #country }
 FakerLocales >> countryName [
 	<return: #String>
 	^ self countryNamesAndIsoCode first
 ]
 
-{ #category : 'country' }
+{ #category : #country }
 FakerLocales >> countryNamesAndIsoCode [
 	<return: #Array of: #String>
 	^ self sample: self countryNamesAndIsoCodes
 ]
 
-{ #category : 'country' }
+{ #category : #country }
 FakerLocales >> countryNamesAndIsoCodes [
 	^ FakerEnLocales new countryNamesAndIsoCodes
 ]

@@ -1,10 +1,10 @@
 Class {
-	#name : 'FakerDate',
-	#superclass : 'FakerModule',
+	#name : #FakerDate,
+	#superclass : #FakerModule,
 	#category : 'Faker-Modules'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 FakerDate >> backward: aDuration [
 	<return: #DateAndTime>
 	| aNow |
@@ -12,7 +12,7 @@ FakerDate >> backward: aDuration [
 	^ self between: aNow - aDuration and: aNow
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 FakerDate >> between: aFromDateAndTime and: aToDateAndTime [
 	<return: #DateAndTime>
 	| anFromOffset aResult |
@@ -30,7 +30,7 @@ FakerDate >> between: aFromDateAndTime and: aToDateAndTime [
 	^ aResult
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 FakerDate >> forward: aDuration [
 	<return: #DateAndTime>
 	| aNow |
@@ -38,7 +38,7 @@ FakerDate >> forward: aDuration [
 	^ self between: aNow and: aNow + aDuration 
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 FakerDate >> sample [
 	<return: #DateAndTime>
 	| aFromDateAndTime aToDateAndTime aNow |

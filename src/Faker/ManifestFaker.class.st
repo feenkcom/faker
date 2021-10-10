@@ -3,7 +3,7 @@ This project is a port of [Ruby's Faker library](https://github.com/stympy/faker
 
 "
 Class {
-	#name : 'ManifestFaker',
-	#superclass : 'PackageManifest',
+	#name : #ManifestFaker,
+	#superclass : #PackageManifest,
 	#category : 'Faker-Manifest'
 }

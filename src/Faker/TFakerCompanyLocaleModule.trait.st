@@ -1,14 +1,14 @@
 Trait {
-	#name : 'TFakerCompanyLocaleModule',
+	#name : #TFakerCompanyLocaleModule,
 	#category : 'Faker-Locales'
 }
 
-{ #category : 'company' }
+{ #category : #company }
 TFakerCompanyLocaleModule >> companyName [
 	^ (self sample: self companyNames) value
 ]
 
-{ #category : 'company' }
+{ #category : #company }
 TFakerCompanyLocaleModule >> companySuffix [
 	^ self sample: self companySuffixes
 ]

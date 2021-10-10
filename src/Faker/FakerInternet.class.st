@@ -1,10 +1,10 @@
 Class {
-	#name : 'FakerInternet',
-	#superclass : 'FakerModule',
+	#name : #FakerInternet,
+	#superclass : #FakerModule,
 	#category : 'Faker-Modules'
 }
 
-{ #category : 'cookie' }
+{ #category : #cookie }
 FakerInternet >> cookieCreationDate [
 	<return: #DateAndTime>
 	self properties isDateRangeDefined
@@ -12,7 +12,7 @@ FakerInternet >> cookieCreationDate [
 	^ self base date sample
 ]
 
-{ #category : 'cookie' }
+{ #category : #cookie }
 FakerInternet >> cookieExpiryTime [
 	<return: #DateAndTime>
 	self properties isDateRangeDefined
@@ -20,24 +20,24 @@ FakerInternet >> cookieExpiryTime [
 	^ self base date sample
 ]
 
-{ #category : 'cookie' }
+{ #category : #cookie }
 FakerInternet >> cookieName [
 	<return: #String>
 	^ self locales internetCookieName
 ]
 
-{ #category : 'cookie' }
+{ #category : #cookie }
 FakerInternet >> cookieValue [
 	<return: #String>
 	^ self locales internetCookieValue 
 ]
 
-{ #category : 'domain' }
+{ #category : #domain }
 FakerInternet >> domainName [
 	^ self domainNameWithSubdomain: false
 ]
 
-{ #category : 'domain' }
+{ #category : #domain }
 FakerInternet >> domainNameWithSubdomain: aBoolean [
 	| theNames |
 	theNames := OrderedCollection new: 3.
@@ -47,14 +47,14 @@ FakerInternet >> domainNameWithSubdomain: aBoolean [
 	^ $. join: theNames
 ]
 
-{ #category : 'domain' }
+{ #category : #domain }
 FakerInternet >> domainSuffix [
 	"Return a random domain suffix"
 	<return: #String>
 	^ self locales internetDomainSuffix
 ]
 
-{ #category : 'domain' }
+{ #category : #domain }
 FakerInternet >> domainWord [
 	"Return a company domain name"
 	<return: #String>
@@ -63,7 +63,7 @@ FakerInternet >> domainWord [
 	^ self base prepareString: aName first
 ]
 
-{ #category : 'address' }
+{ #category : #address }
 FakerInternet >> url [
 	<return: #String>
 	^ self 
@@ -72,7 +72,7 @@ FakerInternet >> url [
 		path: ((self sample: (0 to: 6)) timesCollect: [ self username ])
 ]
 
-{ #category : 'address' }
+{ #category : #address }
 FakerInternet >> urlScheme: aSchemeName host: aHostName path: aPathSegments [
 	<return: #String>
 	self
@@ -91,13 +91,13 @@ FakerInternet >> urlScheme: aSchemeName host: aHostName path: aPathSegments [
 		
 ]
 
-{ #category : 'user' }
+{ #category : #user }
 FakerInternet >> username [
 	<return: #String>
 	^ self usernameWithSeparators: '._'
 ]
 
-{ #category : 'user' }
+{ #category : #user }
 FakerInternet >> usernameWithSeparators: aCollection [
 	<return: #String>
 	^ self base sample: { 

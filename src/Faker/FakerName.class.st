@@ -1,10 +1,10 @@
 Class {
-	#name : 'FakerName',
-	#superclass : 'FakerModule',
+	#name : #FakerName,
+	#superclass : #FakerModule,
 	#category : 'Faker-Modules'
 }
 
-{ #category : 'names' }
+{ #category : #names }
 FakerName class >> englishBoyCommonNames [
 	<gtExample>
 	^ 'Oliver
@@ -50,7 +50,7 @@ Thomas
 ' lines
 ]
 
-{ #category : 'names' }
+{ #category : #names }
 FakerName class >> englishCommonFamilyNames [
 	<gtExample>
 	^ 'Smith
@@ -115,13 +115,13 @@ Anderson
 Li' lines
 ]
 
-{ #category : 'names' }
+{ #category : #names }
 FakerName class >> englishCommonFirstNames [
 	<gtExample>
 	^ self englishBoyCommonNames, self englishGirlCommonNames
 ]
 
-{ #category : 'names' }
+{ #category : #names }
 FakerName class >> englishGirlCommonNames [
 	<gtExample>
 	^ 'Amelia
@@ -166,19 +166,19 @@ Michelle
 Tracy' lines 
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 FakerName >> firstAndLastName [
 	<return: #String>
 	^ self firstName, ' ', self lastName 
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 FakerName >> firstName [
 	<return: #String>
 	^ self locales nameModule personFirstName
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 FakerName >> lastName [
 	<return: #String>
 	^ self locales nameModule personLastName
