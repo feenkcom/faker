@@ -1,9 +1,7 @@
 Class {
 	#name : #FakerEnLocales,
 	#superclass : #FakerLocales,
-	#traits : 'TFakerPersonLocaleModule',
-	#classTraits : 'TFakerPersonLocaleModule classTrait',
-	#category : 'Faker-Locales'
+	#category : #'Faker-Locales'
 }
 
 { #category : #module }

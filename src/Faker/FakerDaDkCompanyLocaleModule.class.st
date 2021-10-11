@@ -1,21 +1,21 @@
 Class {
-	#name : #FakerDeCompanyLocaleModule,
-	#superclass : #FakerDeLocaleModule,
+	#name : #FakerDaDkCompanyLocaleModule,
+	#superclass : #FakerDaDkLocaleModule,
 	#traits : 'TFakerCompanyLocaleModule',
 	#classTraits : 'TFakerCompanyLocaleModule classTrait',
 	#category : #'Faker-Locales'
 }
 
 { #category : #'company - raw data' }
-FakerDeCompanyLocaleModule >> companyNames [
+FakerDaDkCompanyLocaleModule >> companyNames [
 	^ {
 			[ ( String space join: { self base lastName . self companySuffix } ) ].
 			[ ( String empty join: { self base firstName. '-' . self base lastName } ) ].
-			[ ( String space join: { self base firstName. self base lastName . 'und' . self base lastName } ) ]
+			[ ( String space join: { self base firstName. self base lastName . 'og' . self base lastName } ) ]
 		}
 ]
 
 { #category : #'company - raw data' }
-FakerDeCompanyLocaleModule >> companySuffixes [
-	^ #( 'GmbH' 'AG' 'Gruppe' 'KG' 'GmbH & Co. KG' 'UG' 'OHG' )
+FakerDaDkCompanyLocaleModule >> companySuffixes [
+	^ #('A/S' 'ApS' 'I/S' 'IVS' 'Holding' 'SMBA' 'K/S' 'SPW')
 ]
