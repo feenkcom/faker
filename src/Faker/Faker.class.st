@@ -94,7 +94,11 @@ Faker >> locales: aFakerLocales [
 	self 
 		assert: [ aFakerLocales isNotNil ] 
 		description: [ 'Locales must be non-nil' ].
-	locales := aFakerLocales
+	self assert: [ 
+		aFakerLocales base isNil ]. 
+	locales := aFakerLocales.
+	aFakerLocales base: self 
+	
 ]
 
 { #category : #'accessing - modules' }
