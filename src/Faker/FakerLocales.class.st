@@ -10,6 +10,11 @@ Class {
 }
 
 { #category : #public }
+FakerLocales class >> daDk [
+	^ FakerDaDkLocales new
+]
+
+{ #category : #public }
 FakerLocales class >> de [
 	^ FakerDeLocales new
 ]

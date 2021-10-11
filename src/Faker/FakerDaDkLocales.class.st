@@ -1,10 +1,10 @@
 Class {
-	#name : #FakerDaLocales,
+	#name : #FakerDaDkLocales,
 	#superclass : #FakerLocales,
 	#category : #'Faker-Locales'
 }
 
 { #category : #module }
-FakerDaLocales >> nameModule [
+FakerDaDkLocales >> nameModule [
 	^ FakerDaDkNameLocaleModule new base: self base
 ]
