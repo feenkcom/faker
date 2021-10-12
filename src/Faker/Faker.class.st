@@ -95,7 +95,7 @@ Faker >> locales: aFakerLocales [
 		assert: [ aFakerLocales isNotNil ] 
 		description: [ 'Locales must be non-nil' ].
 	self assert: [ 
-		aFakerLocales base isNil ]. 
+		aFakerLocales rawBase isNil ]. 
 	locales := aFakerLocales.
 	aFakerLocales base: self 
 	
@@ -274,6 +274,11 @@ Faker >> shuffle: aSequenceableCollection [
 		assert: [ aSequenceableCollection isCollection ]
 		description: [ 'Only collections can be shuffled' ].
 	^ aSequenceableCollection shuffleBy: self random 
+]
+
+{ #category : #'accessing - modules' }
+Faker >> sizeGenerator [
+	^ FakerSize new base: self
 ]
 
 { #category : #actions }

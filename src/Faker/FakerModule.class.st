@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'base'
 	],
-	#category : 'Faker-Modules'
+	#category : #'Faker-Modules'
 }
 
 { #category : #accessing }
@@ -44,6 +44,11 @@ FakerModule >> multiplierFor: aSelector [
 FakerModule >> properties [
 	<return: #FakerLocales>
 	^ self base properties
+]
+
+{ #category : #accessing }
+FakerModule >> rawBase [
+	^ base
 ]
 
 { #category : #actions }
