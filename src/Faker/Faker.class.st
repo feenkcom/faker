@@ -54,7 +54,12 @@ Faker >> defaultRandom [
 { #category : #actions }
 Faker >> firstName [
 	<return: #String>
-	^ self name firstName
+	^ self personNameGenerator firstName
+]
+
+{ #category : #'accessing - modules' }
+Faker >> idGenerator [
+	^ FakerId new base: self
 ]
 
 { #category : #'accessing - modules' }
@@ -65,7 +70,17 @@ Faker >> internet [
 { #category : #actions }
 Faker >> lastName [
 	<return: #String>
-	^ self name lastName
+	^ self personNameGenerator lastName
+]
+
+{ #category : #actions }
+Faker >> letters: aSize [
+	| availableChars |
+	availableChars := Character alphabet.
+	^ String streamContents: [ :aStream |
+		aStream nextPutAll: (self 
+			sample: availableChars 
+			ofSize: aSize) ] 
 ]
 
 { #category : #accessing }
@@ -79,12 +94,28 @@ Faker >> locales: aFakerLocales [
 	self 
 		assert: [ aFakerLocales isNotNil ] 
 		description: [ 'Locales must be non-nil' ].
-	locales := aFakerLocales
+	self assert: [ 
+		aFakerLocales rawBase isNil ]. 
+	locales := aFakerLocales.
+	aFakerLocales base: self 
+	
 ]
 
 { #category : #'accessing - modules' }
-Faker >> name [
-	^ FakerName new base: self
+Faker >> multiplier [
+	^ FakerMultiplier new base: self
+]
+
+{ #category : #actions }
+Faker >> nextIntegerBetween: lowerBound and: higherBound [
+	^ self random 
+		nextIntegerBetween: lowerBound and: higherBound
+]
+
+{ #category : #actions }
+Faker >> nextScaledIntegerBetween: lowerBound and: higherBound [
+	^ self scaleFactor * (self random 
+		nextIntegerBetween: lowerBound and: higherBound)
 ]
 
 { #category : #actions }
@@ -121,6 +152,11 @@ Faker >> numerify: aNumberPattern leadingZero: aBoolean [
 	self assert: [ aResult isString ].
 	self assert: [ (aResult includesSubstring: '#') not ].
 	^ aResult
+]
+
+{ #category : #'accessing - modules' }
+Faker >> personNameGenerator [
+	^ FakerName new base: self
 ]
 
 { #category : #actions }
@@ -168,6 +204,69 @@ Faker >> sample: aCollection [
 ]
 
 { #category : #actions }
+Faker >> sample: aCollection ofSize: aSize [
+	"Return a given numer of items from the collection.
+	Each value can be sampled multiple times."
+	<return: #Object>
+	self 
+		assert: [ aCollection isNotNil ]
+		description: [ 'Only collections can be sampled' ].
+	^ aSize timesCollect: [
+		self sample: aCollection ]
+]
+
+{ #category : #actions }
+Faker >> sample: aCollection ofSize: aSize withCumulativeWeights: aCollectionOfCumulativeWeights [
+	^ aSize timesCollect: [ 
+		self 
+			sample: aCollection 
+			withCumulativeWeights: aCollectionOfCumulativeWeights ]
+]
+
+{ #category : #actions }
+Faker >> sample: aCollection ofSize: aSize withWeights: aCollectionOfWeights [
+	| cumulativeWeights currentSum |
+	<return: #Object>
+	cumulativeWeights := Array new: aCollectionOfWeights size.
+	currentSum := 0.
+	aCollectionOfWeights withIndexDo: [ :aWeight :anIndex | 
+		currentSum := currentSum + aWeight.
+		cumulativeWeights at: anIndex put: currentSum ].
+	^ self 
+		sample: aCollection 
+		ofSize: aSize
+		withCumulativeWeights: cumulativeWeights
+]
+
+{ #category : #actions }
+Faker >> sample: aCollection withCumulativeWeights: aCollectionOfCumulativeWeights [
+	| totalWeight randomValue |
+	
+	totalWeight := aCollectionOfCumulativeWeights last.
+	randomValue := self random nextInteger: totalWeight.
+	aCollectionOfCumulativeWeights withIndexDo: [ :aWeight :index |
+		aWeight >= randomValue ifTrue: [ ^ aCollection at: index ] ].
+	Error signal.
+]
+
+{ #category : #actions }
+Faker >> sample: aCollection withWeights: aCollectionOfWeights [
+	^ (self sample: aCollection ofSize: 1 withWeights: aCollectionOfWeights) first
+]
+
+{ #category : #actions }
+Faker >> samplewithWeights: aCollectionOfValusAndWeights [
+	^ self
+		sample: aCollectionOfValusAndWeights keys
+		withWeights: aCollectionOfValusAndWeights values
+]
+
+{ #category : #accessing }
+Faker >> scaleFactor [
+	^ self properties scaleFactor
+]
+
+{ #category : #actions }
 Faker >> shuffle: aSequenceableCollection [
 	"Randomly shuffle collection items"
 	<return: #SequenceableCollection>
@@ -175,4 +274,23 @@ Faker >> shuffle: aSequenceableCollection [
 		assert: [ aSequenceableCollection isCollection ]
 		description: [ 'Only collections can be shuffled' ].
 	^ aSequenceableCollection shuffleBy: self random 
+]
+
+{ #category : #'accessing - modules' }
+Faker >> sizeGenerator [
+	^ FakerSize new base: self
+]
+
+{ #category : #actions }
+Faker >> uniqueSample: aCollection ofSize: aSize [
+	"Return a given numer of items from the collection. 
+	Ensure every value is sampled at most once."
+	| indexes |
+	<return: #Object>
+	self 
+		assert: [ aCollection isNotNil ]
+		description: [ 'Only collections can be sampled' ].
+	indexes := self shuffle: (1 to: aCollection size) asOrderedCollection.
+	^ aSize timesCollect: [ :index |
+		aCollection at: (indexes at: index) ]
 ]

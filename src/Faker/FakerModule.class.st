@@ -29,10 +29,26 @@ FakerModule >> locales [
 	^ self base locales
 ]
 
+{ #category : #actions }
+FakerModule >> multiplier [
+	^ self multiplierFor: #sample
+]
+
+{ #category : #actions }
+FakerModule >> multiplierFor: aSelector [
+	^ self base multiplier 
+		target: [ self perform: aSelector ]
+]
+
 { #category : #accessing }
 FakerModule >> properties [
 	<return: #FakerLocales>
 	^ self base properties
+]
+
+{ #category : #accessing }
+FakerModule >> rawBase [
+	^ base
 ]
 
 { #category : #actions }

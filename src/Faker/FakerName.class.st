@@ -1,7 +1,7 @@
 Class {
 	#name : #FakerName,
 	#superclass : #FakerModule,
-	#category : #'Faker-Modules'
+	#category : 'Faker-Modules'
 }
 
 { #category : #names }
@@ -167,13 +167,19 @@ Tracy' lines
 ]
 
 { #category : #accessing }
+FakerName >> firstAndLastName [
+	<return: #String>
+	^ self firstName, ' ', self lastName 
+]
+
+{ #category : #accessing }
 FakerName >> firstName [
 	<return: #String>
-	^ self locales personFirstName
+	^ self locales nameModule personFirstName
 ]
 
 { #category : #accessing }
 FakerName >> lastName [
 	<return: #String>
-	^ self locales personLastName
+	^ self locales nameModule personLastName
 ]

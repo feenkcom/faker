@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'dictionary'
 	],
-	#category : #'Faker-Modules'
+	#category : 'Faker-Modules'
 }
 
 { #category : #'accessing - basic properties' }
@@ -119,6 +119,20 @@ FakerProperties >> isDateRangeDefined [
 { #category : #copying }
 FakerProperties >> postCopy [
 	dictionary := dictionary copy
+]
+
+{ #category : #accessing }
+FakerProperties >> scaleFactor [ 
+	^ self 
+		at: #scaleFactor 
+		ifAbsent: [ 1 ]
+]
+
+{ #category : #accessing }
+FakerProperties >> scaleFactor: anInteger [
+	^ self 
+		at: #scaleFactor 
+		put: anInteger
 ]
 
 { #category : #date }
