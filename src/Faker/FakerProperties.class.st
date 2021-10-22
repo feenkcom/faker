@@ -72,14 +72,6 @@ FakerProperties >> scaleFactor: anInteger [
 		put: anInteger
 ]
 
-{ #category : #'accessing - modules' }
-FakerProperties >> sociator [
-	^ self 
-		at: #sociatorModule 
-		ifAbsentPut: [ 
-			FakerSociatorProperties new base: self base ]
-]
-
 { #category : #date }
 FakerProperties >> toDateAndTime [
 	<return: #DateAndTime or: nil>
