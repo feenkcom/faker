@@ -28,6 +28,21 @@ FakerSizeSpecification >> sizesWithWeights: aCollectionOfValusAndWeights [
 		weights: aCollectionOfValusAndWeights values.
 ]
 
+{ #category : #printing }
+FakerSizeSpecification >> valueDescriptionOn: aStream [
+	aStream 
+		<< 'random weighted value ';
+		<< ((1 to: self weights size) collect: [:index |
+			'[',
+			(self sizes at: index ) asString,
+			', ', 
+			(self weights at: index ) asString,
+			']']) asCommaString;
+		<< ' ± ';
+		<< self variance asString;
+		<< '%'
+]
+
 { #category : #'api - generation' }
 FakerSizeSpecification >> valueWith: aFaker [
 	^ aFaker sizeGenerator

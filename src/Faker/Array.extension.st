@@ -8,6 +8,6 @@ Array >> fakerWeightedSizeWithVariance [
 { #category : #'*Faker' }
 Array >> fakerWeightedSizeWithVariance: aPercent [
 	^ FakerSizeSpecification new
-		sizesWithWeights: self asDictionary; 
+		sizesWithWeights: self asOrderedDictionary; 
 		variance: aPercent
 ]
