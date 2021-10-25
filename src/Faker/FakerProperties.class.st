@@ -4,7 +4,7 @@ Class {
 	#category : #'Faker-Properties'
 }
 
-{ #category : #date }
+{ #category : #'accessing - properties date' }
 FakerProperties >> backwardDuration [
 	<return: #Duration or: nil>
 	^ self 
@@ -12,14 +12,14 @@ FakerProperties >> backwardDuration [
 		ifAbsent: [ nil ]
 ]
 
-{ #category : #date }
+{ #category : #'api - configuration' }
 FakerProperties >> backwardDuration: aDuration [
 	^ self 
 		at: #backwardDuration 
 		put: aDuration
 ]
 
-{ #category : #date }
+{ #category : #'accessing - properties date' }
 FakerProperties >> forwardDuration [
 	<return: #Duration or: nil>
 	^ self 
@@ -27,14 +27,14 @@ FakerProperties >> forwardDuration [
 		ifAbsent: [ nil ]
 ]
 
-{ #category : #date }
+{ #category : #'api - configuration' }
 FakerProperties >> forwardDuration: aDuration [
 	^ self 
 		at: #forwardDuration 
 		put: aDuration
 ]
 
-{ #category : #date }
+{ #category : #'accessing - properties date' }
 FakerProperties >> fromDateAndTime [
 	<return: #DateAndTime or: nil>
 	^ self 
@@ -42,14 +42,14 @@ FakerProperties >> fromDateAndTime [
 		ifAbsent: [ nil ]
 ]
 
-{ #category : #date }
+{ #category : #'api - configuration' }
 FakerProperties >> fromDateAndTime: aDateAndTime [
 	^ self 
 		at: #fromDateAndTime 
 		put: aDateAndTime
 ]
 
-{ #category : #date }
+{ #category : #'api - configuration' }
 FakerProperties >> isDateRangeDefined [
 	<return: #Boolean>
 	^ self fromDateAndTime isNotNil or: [ 
@@ -72,7 +72,7 @@ FakerProperties >> scaleFactor: anInteger [
 		put: anInteger
 ]
 
-{ #category : #date }
+{ #category : #'accessing - properties date' }
 FakerProperties >> toDateAndTime [
 	<return: #DateAndTime or: nil>
 	^ self 
@@ -80,7 +80,7 @@ FakerProperties >> toDateAndTime [
 		ifAbsent: [ nil ]
 ]
 
-{ #category : #date }
+{ #category : #'api - configuration' }
 FakerProperties >> toDateAndTime: aDateAndTime [
 	^ self 
 		at: #toDateAndTime 

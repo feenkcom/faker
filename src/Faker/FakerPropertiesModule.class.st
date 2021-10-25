@@ -8,6 +8,36 @@ Class {
 	#category : #'Faker-Properties'
 }
 
+{ #category : #'modules - reflection' }
+FakerPropertiesModule class >> definedModuleClasses [
+	^ self definedModuleNames 
+		collect: [ :each | each asClass ]
+]
+
+{ #category : #'modules - reflection' }
+FakerPropertiesModule class >> definedModuleNames [
+	^ (self methods 
+		select: [ :each |
+			each hasPragmaNamed: #fakerPropertiesModule ])
+		collect: [ :each |
+			| returnPragma |
+			returnPragma := each pragmaAt: #return:.
+			returnPragma arguments first ]
+]
+
+{ #category : #'modules - reflection' }
+FakerPropertiesModule class >> definedPropertyMethods [
+	^ self methods select: [ :each |
+		each category beginsWith: 'accessing - properties' ]
+]
+
+{ #category : #'modules - reflection' }
+FakerPropertiesModule class >> withAllDefinedModulesDo: aBlock [
+	aBlock value: self.
+	self definedModuleClasses do: [ :each |
+		 each withAllDefinedModulesDo: aBlock ]
+]
+
 { #category : #accessing }
 FakerPropertiesModule >> allProperties [ 
 	| allProperties |
@@ -68,12 +98,13 @@ FakerPropertiesModule >> gtViewAllPropertiesFor: aView [
 		priority: 5;
 		items: [ self allProperties associations ];
 		column: 'Property' text: [ :assoc | 
-			assoc key capitalized splitCamelCase asStringWithCr ];
+			assoc key soAsCapitalizedCamelCase ];
 		column: 'Value' text: [ :assoc | 
 			(assoc value isKindOf: FakerValueSpecification)
 				ifTrue: [ assoc value valueDescription ]
 				ifFalse: [ assoc value  gtDisplayString ] ];
-		send: [ :assoc | assoc value ]
+		send: [ :assoc | assoc value ];
+		withCopyConfluceMarkupAction
 ]
 
 { #category : #'gt-extensions' }
@@ -84,7 +115,7 @@ FakerPropertiesModule >> gtViewCurrentPropertiesFor: aView [
 		priority: 10;
 		items: [ propertiesDictionary associations ];
 		column: 'Property' text: [ :assoc |
-			assoc key capitalized splitCamelCase asStringWithCr ];
+			assoc key soAsCapitalizedCamelCase ];
 		column: 'Value' text: [ :assoc | 
 			(assoc value isKindOf: FakerValueSpecification)
 				ifTrue: [ assoc value valueDescription ]
