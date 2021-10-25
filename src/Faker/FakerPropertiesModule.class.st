@@ -8,6 +8,15 @@ Class {
 	#category : #'Faker-Properties'
 }
 
+{ #category : #accessing }
+FakerPropertiesModule >> allProperties [ 
+	| allProperties |
+	allProperties := OrderedDictionary new.
+	self withAllModulesDo: [ :aModule |
+		allProperties addAll: aModule propertiesDictionary associations ].
+	^ allProperties
+]
+
 { #category : #'accessing - basic properties' }
 FakerPropertiesModule >> at: aSymbol [
 	^ self propertiesDictionary
@@ -51,17 +60,71 @@ FakerPropertiesModule >> base: aFaker [
 		aPropertiesModule base: aFaker ]
 ]
 
+{ #category : #'gt-extensions' }
+FakerPropertiesModule >> gtViewAllPropertiesFor: aView [
+	<gtView>
+	^ aView columnedList
+		title: 'All Properties';
+		priority: 5;
+		items: [ self allProperties associations ];
+		column: 'Property' text: [ :assoc | 
+			assoc key capitalized splitCamelCase asStringWithCr ];
+		column: 'Value' text: [ :assoc | 
+			(assoc value isKindOf: FakerValueSpecification)
+				ifTrue: [ assoc value valueDescription ]
+				ifFalse: [ assoc value  gtDisplayString ] ];
+		send: [ :assoc | assoc value ]
+]
+
+{ #category : #'gt-extensions' }
+FakerPropertiesModule >> gtViewCurrentPropertiesFor: aView [
+	<gtView>
+	^ aView columnedList
+		title: 'Current Properties';
+		priority: 10;
+		items: [ propertiesDictionary associations ];
+		column: 'Property' text: [ :assoc |
+			assoc key capitalized splitCamelCase asStringWithCr ];
+		column: 'Value' text: [ :assoc | 
+			(assoc value isKindOf: FakerValueSpecification)
+				ifTrue: [ assoc value valueDescription ]
+				ifFalse: [ assoc value  gtDisplayString ] ];
+		send: [ :assoc | assoc value ]
+]
+
+{ #category : #'gt-extensions' }
+FakerPropertiesModule >> gtViewModulesFor: aView [
+	<gtView>
+	^ aView columnedList
+		title: 'Modules';
+		items: [ modulesDictionary associations ];
+		column: 'Key' text: [ :assoc | assoc key ];
+		column: 'Properties' text: [ :assoc | assoc value propertiesCount ];
+		column: 'Modules' text: [ :assoc | assoc value modulesCount ];
+		send: [ :assoc | assoc value ]
+]
+
 { #category : #initialization }
 FakerPropertiesModule >> initialize [
 	super initialize.
-	propertiesDictionary := Dictionary new.
-	modulesDictionary := Dictionary new.
+	propertiesDictionary := OrderedDictionary new.
+	modulesDictionary := OrderedDictionary new.
+]
+
+{ #category : #accessing }
+FakerPropertiesModule >> modulesCount [
+	^ modulesDictionary size
 ]
 
 { #category : #copying }
 FakerPropertiesModule >> postCopy [
 	propertiesDictionary := propertiesDictionary copy.
 	modulesDictionary := modulesDictionary copy.
+]
+
+{ #category : #accessing }
+FakerPropertiesModule >> propertiesCount [
+	^ propertiesDictionary size
 ]
 
 { #category : #accessing }
@@ -89,4 +152,11 @@ FakerPropertiesModule >> valueFor: aProperty withDefault: aDefaultBlock [
 		ifPresent: [ :aSpecification |
 			aSpecification fakerValueWith: self base ]
 		ifAbsent: aDefaultBlock
+]
+
+{ #category : #enumerating }
+FakerPropertiesModule >> withAllModulesDo: aBlock [
+	aBlock value: self.
+	modulesDictionary valuesDo: [ :aModule |
+		aModule withAllModulesDo: aBlock ]
 ]

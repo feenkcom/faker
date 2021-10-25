@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'targetComputation'
 	],
-	#category : 'Faker-Modules'
+	#category : #'Faker-Modules'
 }
 
 { #category : #api }
@@ -23,7 +23,7 @@ FakerMultiplier >> uniqueSampleOfSize: aSize [
 	| currentSamples  |
 	currentSamples := OrderedCollection new: aSize.
 	
-	[ currentSamples size <= aSize ] whileTrue: [ 
+	[ currentSamples size < aSize ] whileTrue: [ 
 		| newSample |
 		newSample := targetComputation value.
 		(currentSamples includes: newSample)

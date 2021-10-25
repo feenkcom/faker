@@ -45,6 +45,15 @@ FakerInBetweenIntegerSpecification >> useScale: anObject [
 	useScale := anObject
 ]
 
+{ #category : #accessing }
+FakerInBetweenIntegerSpecification >> valueDescriptionOn: aStream [
+	aStream
+		<< 'random value between ';
+		<< self lowerBound asString;
+		<< ' and ';
+		<< self higherBound asString
+]
+
 { #category : #'api - generation' }
 FakerInBetweenIntegerSpecification >> valueWith: aFaker [
 	^ aFaker 
