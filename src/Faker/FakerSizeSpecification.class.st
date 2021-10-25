@@ -33,11 +33,11 @@ FakerSizeSpecification >> valueDescriptionOn: aStream [
 	aStream 
 		<< 'random weighted value ';
 		<< ((1 to: self weights size) collect: [:index |
-			'[',
+			'(',
 			(self sizes at: index ) asString,
 			', ', 
 			(self weights at: index ) asString,
-			']']) asCommaString;
+			')']) asCommaString;
 		<< ' ± ';
 		<< self variance asString;
 		<< '%'
