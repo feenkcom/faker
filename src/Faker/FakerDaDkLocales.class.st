@@ -5,6 +5,11 @@ Class {
 }
 
 { #category : #module }
+FakerDaDkLocales >> companyModule [
+	^ FakerDaDkCompanyLocaleModule new base: self base
+]
+
+{ #category : #module }
 FakerDaDkLocales >> nameModule [
 	^ FakerDaDkNameLocaleModule new base: self base
 ]
