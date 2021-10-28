@@ -42,7 +42,7 @@ FakerWeightedSpecification >> valuesWithWeightsPercentageOn: aStream [
 			self descriptionForValueAtIndex: index on: aStream.
 			aStream
 				<< ' - ';
-				<< ((self weights at: index) soAsPrcentageRelativeTo: weightsSum)]
+				<< ((self weights at: index) soAsPercentageRelativeTo: weightsSum)]
 		separatedBy: [
 			aStream 
 				<< ','
