@@ -8,18 +8,30 @@ Class {
 }
 
 { #category : #printing }
+FakerSizeSpecification >> descriptionForValueAtIndex: anIndex on: aStream [
+	| referenceValue minValue maxValue minSize |
+	
+	minSize := self values min.
+	referenceValue := self values at: anIndex.
+	minValue := ((referenceValue - (referenceValue * self variance ) asInteger) max: minSize).
+	maxValue := referenceValue + (referenceValue * self variance ) asInteger.
+	minValue = maxValue ifTrue: [ 
+		aStream << minValue asString.
+		^ self ].
+	aStream
+		<< '(';
+		<< minValue asString;
+		<< ' to ';
+		<< maxValue asString;
+		<< ')'
+]
+
+{ #category : #printing }
 FakerSizeSpecification >> valueDescriptionOn: aStream [
 	aStream 
-		<< 'random weighted value ';
-		<< ((1 to: self weights size) collect: [:index |
-			'(',
-			(self values at: index ) asString,
-			', ', 
-			(self weights at: index ) asString,
-			')']) asCommaString;
-		<< ' ± ';
-		<< self variance asString;
-		<< '%'
+		<< 'random value:';
+		<< String cr.
+	self valuesWithWeightsPercentageOn: aStream.
 ]
 
 { #category : #'api - generation' }
