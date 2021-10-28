@@ -2,47 +2,49 @@ Class {
 	#name : #FakerWeightedSpecification,
 	#superclass : #FakerValueSpecification,
 	#instVars : [
-		'values',
-		'weights'
+		'valuesWithWeights'
 	],
 	#category : #'Faker-Properties'
 }
 
 { #category : #printing }
-FakerWeightedSpecification >> descriptionForValueAtIndex: anIndex on: aStream [
+FakerWeightedSpecification >> descriptionForValue: aValue on: aStream [
 	aStream
-		<< (self values at: anIndex) asString
+		<< aValue asString
+]
+
+{ #category : #'gt-extensions' }
+FakerWeightedSpecification >> gtViewValuesWithWeightsFor: aView [
+	<gtView>
+	^ aView columnedList 
+		title: 'Values and weights';
+		items: [ valuesWithWeights ];
+		column: 'Value' text: [ :assoc | assoc key ];
+		column: 'Probabilities' text: [ :assoc | 
+			assoc value fakerAsPercentageRelativeTo: self weights sum ];
+		column: 'Weight' text: [ :assoc | assoc value ]
 ]
 
 { #category : #accessing }
 FakerWeightedSpecification >> values [
-
-	^ values
+	^ valuesWithWeights collect: [ :assoc | assoc key ]
 ]
 
 { #category : #accessing }
-FakerWeightedSpecification >> values: anObject [
-
-	values := anObject
-]
-
-{ #category : #accessing }
-FakerWeightedSpecification >> valuesWithWeights: aCollectionOfValusAndWeights [
-	self 
-		values: aCollectionOfValusAndWeights keys;
-		weights: aCollectionOfValusAndWeights values.
+FakerWeightedSpecification >> valuesWithWeights: aDictionaryOfValusAndWeights [
+	valuesWithWeights := aDictionaryOfValusAndWeights associations
 ]
 
 { #category : #printing }
 FakerWeightedSpecification >> valuesWithWeightsPercentageOn: aStream [
 	| weightsSum |
 	weightsSum := self weights sum.
-	(1 to: self weights size) 
-		do: [:index |
-			self descriptionForValueAtIndex: index on: aStream.
+	valuesWithWeights
+		do: [ :assoc |
+			self descriptionForValue: assoc key on: aStream.
 			aStream
 				<< ' - ';
-				<< ((self weights at: index) fakerAsPercentageRelativeTo: weightsSum)]
+				<< (assoc value fakerAsPercentageRelativeTo: weightsSum)]
 		separatedBy: [
 			aStream 
 				<< ','
@@ -51,12 +53,5 @@ FakerWeightedSpecification >> valuesWithWeightsPercentageOn: aStream [
 
 { #category : #accessing }
 FakerWeightedSpecification >> weights [
-
-	^ weights
-]
-
-{ #category : #accessing }
-FakerWeightedSpecification >> weights: anObject [
-
-	weights := anObject
+	^ valuesWithWeights collect: [ :assoc | assoc value ]
 ]

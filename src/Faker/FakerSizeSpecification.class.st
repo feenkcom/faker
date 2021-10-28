@@ -8,13 +8,11 @@ Class {
 }
 
 { #category : #printing }
-FakerSizeSpecification >> descriptionForValueAtIndex: anIndex on: aStream [
-	| referenceValue minValue maxValue minSize |
-	
+FakerSizeSpecification >> descriptionForValue: aValue on: aStream [
+	| minValue maxValue minSize |
 	minSize := self values min.
-	referenceValue := self values at: anIndex.
-	minValue := ((referenceValue - (referenceValue * self variance ) asInteger) max: minSize).
-	maxValue := referenceValue + (referenceValue * self variance ) asInteger.
+	minValue := ((aValue - (aValue * self variance ) asInteger) max: minSize).
+	maxValue := aValue + (aValue * self variance ) asInteger.
 	minValue = maxValue ifTrue: [ 
 		aStream << minValue asString.
 		^ self ].
@@ -24,6 +22,21 @@ FakerSizeSpecification >> descriptionForValueAtIndex: anIndex on: aStream [
 		<< ' to ';
 		<< maxValue asString;
 		<< ')'
+]
+
+{ #category : #'gt-extensions' }
+FakerSizeSpecification >> gtViewValuesWithWeightsFor: aView [
+	<gtView>
+	^ aView columnedList 
+		title: 'Values and weights';
+		items: [ valuesWithWeights ];
+		column: 'Value' text: [ :assoc | assoc key ];
+		column: 'Range' text: [ :assoc | 
+			String streamContents: [ :aStream |
+				self descriptionForValue: assoc key on: aStream ] ];
+		column: 'Probabilities' text: [ :assoc | 
+			assoc value fakerAsPercentageRelativeTo: self weights sum ];
+		column: 'Weight' text: [ :assoc | assoc value ]
 ]
 
 { #category : #printing }
