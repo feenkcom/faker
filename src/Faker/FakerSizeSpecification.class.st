@@ -1,32 +1,11 @@
 Class {
 	#name : #FakerSizeSpecification,
-	#superclass : #FakerValueSpecification,
+	#superclass : #FakerWeightedSpecification,
 	#instVars : [
-		'sizes',
-		'weights',
 		'variance'
 	],
 	#category : #'Faker-Properties'
 }
-
-{ #category : #accessing }
-FakerSizeSpecification >> sizes [
-
-	^ sizes
-]
-
-{ #category : #accessing }
-FakerSizeSpecification >> sizes: anObject [
-
-	sizes := anObject
-]
-
-{ #category : #accessing }
-FakerSizeSpecification >> sizesWithWeights: aCollectionOfValusAndWeights [
-	self 
-		sizes: aCollectionOfValusAndWeights keys;
-		weights: aCollectionOfValusAndWeights values.
-]
 
 { #category : #printing }
 FakerSizeSpecification >> valueDescriptionOn: aStream [
@@ -34,7 +13,7 @@ FakerSizeSpecification >> valueDescriptionOn: aStream [
 		<< 'random weighted value ';
 		<< ((1 to: self weights size) collect: [:index |
 			'(',
-			(self sizes at: index ) asString,
+			(self values at: index ) asString,
 			', ', 
 			(self weights at: index ) asString,
 			')']) asCommaString;
@@ -46,7 +25,7 @@ FakerSizeSpecification >> valueDescriptionOn: aStream [
 { #category : #'api - generation' }
 FakerSizeSpecification >> valueWith: aFaker [
 	^ aFaker sizeGenerator
-		sample: self sizes
+		sample: self values
 		withWeights: self weights
 		andVariance: self variance
 ]
@@ -61,16 +40,4 @@ FakerSizeSpecification >> variance [
 FakerSizeSpecification >> variance: anObject [
 
 	variance := anObject
-]
-
-{ #category : #accessing }
-FakerSizeSpecification >> weights [
-
-	^ weights
-]
-
-{ #category : #accessing }
-FakerSizeSpecification >> weights: anObject [
-
-	weights := anObject
 ]

@@ -1,6 +1,12 @@
 Extension { #name : #Array }
 
 { #category : #'*Faker' }
+Array >> fakerWeightedChoice [
+	^ FakerChoiceSpecification new
+		valuesWithWeights: self asOrderedDictionary
+]
+
+{ #category : #'*Faker' }
 Array >> fakerWeightedSizeWithVariance [
 	^ self fakerWeightedSizeWithVariance: 20 percent
 ]
@@ -8,6 +14,6 @@ Array >> fakerWeightedSizeWithVariance [
 { #category : #'*Faker' }
 Array >> fakerWeightedSizeWithVariance: aPercent [
 	^ FakerSizeSpecification new
-		sizesWithWeights: self asOrderedDictionary; 
+		valuesWithWeights: self asOrderedDictionary; 
 		variance: aPercent
 ]
