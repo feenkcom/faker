@@ -7,13 +7,9 @@ Class {
 { #category : #printing }
 FakerChoiceSpecification >> valueDescriptionOn: aStream [
 	aStream 
-		<< 'random weighted choice ';
-		<< ((1 to: self weights size) collect: [:index |
-			'(',
-			(self values at: index ) asString,
-			', ', 
-			(self weights at: index ) asString,
-			')']) asCommaString
+		<< 'random choice:';
+		<< String cr.
+	self valuesWithWeightsPercentageOn: aStream
 ]
 
 { #category : #'api - generation' }
