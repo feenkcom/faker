@@ -29,6 +29,16 @@ FakerLocales class >> en [
 	^ FakerEnLocales new
 ]
 
+{ #category : #public }
+FakerLocales class >> localeWithCode: aLocaleCode [
+	^ self subclasses 
+		detect: [ :aLocaleClass | 
+			aLocaleClass localeCode = aLocaleCode  ]
+		ifFound: [ :aLocaleClass |
+			aLocaleClass new ]
+		ifNone: [ Error signal: 'Could not find locale ', aLocaleCode asString  ]
+]
+
 { #category : #country }
 FakerLocales >> countryIsoCode [
 	<return: #String>

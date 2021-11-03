@@ -184,6 +184,11 @@ Class {
 	#category : 'Faker-Locales'
 }
 
+{ #category : #accessing }
+FakerDeLocales class >> localeCode [
+	^ 'de_DE'
+]
+
 { #category : #module }
 FakerDeLocales >> companyModule [
 	^ FakerDeCompanyLocaleModule new base: self base
