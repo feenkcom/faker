@@ -4,6 +4,11 @@ Class {
 	#category : #'Faker-Locales'
 }
 
+{ #category : #accessing }
+FakerDaDkLocales class >> localeCode [
+	^ 'da_DK'
+]
+
 { #category : #module }
 FakerDaDkLocales >> companyModule [
 	^ FakerDaDkCompanyLocaleModule new base: self base
