@@ -21,6 +21,11 @@ Faker class >> initialize [
    Letters := ULetters, ULetters asUppercase.
 ]
 
+{ #category : #accessing }
+Faker >> boolean [
+	^ self sample: #(true false)
+]
+
 { #category : #'accessing - modules' }
 Faker >> char [
 	^ FakerChar uniqueInstance
