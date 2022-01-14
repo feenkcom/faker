@@ -36,6 +36,11 @@ Faker >> company [
 	^ FakerCompany new base: self
 ]
 
+{ #category : #accessing }
+Faker >> coordinates [
+	^ FakerCoordinates new base: self.
+]
+
 { #category : #'accessing - modules' }
 Faker >> country [
 	^ FakerCountry new base: self
