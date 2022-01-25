@@ -77,6 +77,11 @@ Faker >> internet [
 	^ FakerInternet new base: self
 ]
 
+{ #category : #accessing }
+Faker >> ipAddress [
+	^ FakerIPAddress new base: self.
+]
+
 { #category : #actions }
 Faker >> lastName [
 	<return: #String>
