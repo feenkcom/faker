@@ -5,7 +5,7 @@ Class {
 		'longitude',
 		'latitude'
 	],
-	#category : #Faker
+	#category : #'Faker-Modules'
 }
 
 { #category : #accessing }
