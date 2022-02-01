@@ -5,7 +5,7 @@ Array >> fakerUniformChoice [
 	|valuesWithWeights values|
 	values := Array 
 		new: (self size)
-		withAll: ((1 / (self size))* 100).
+		withAll: (((1 / (self size))* 100) asInteger).
 	valuesWithWeights := OrderedDictionary
 		newFromKeys: self
 		andValues: values.
