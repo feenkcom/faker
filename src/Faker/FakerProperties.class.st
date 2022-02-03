@@ -49,24 +49,6 @@ FakerProperties >> fromDateAndTime: aDateAndTime [
 		put: aDateAndTime
 ]
 
-{ #category : #accessing }
-FakerProperties >> googleProperties [
-	^ modulesDictionary
-		at: #googleModule
-		ifAbsent: [
-			self googleProperties: SoGoogleFakerProperties new.
-		]
-]
-
-{ #category : #accessing }
-FakerProperties >> googleProperties: googleProperties [
-	self rawBase ifNotNil: [ :aBase |
-		googleProperties base: aBase ].
-	^ modulesDictionary 
-		at: #googleModule 
-		put: googleProperties
-]
-
 { #category : #'api - configuration' }
 FakerProperties >> isDateRangeDefined [
 	<return: #Boolean>
