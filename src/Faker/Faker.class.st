@@ -122,6 +122,12 @@ Faker >> multiplier [
 ]
 
 { #category : #actions }
+Faker >> nextInteger: aHigherBound [
+	^ self random 
+		nextInteger: aHigherBound
+]
+
+{ #category : #actions }
 Faker >> nextIntegerBetween: lowerBound and: higherBound [
 	^ self random 
 		nextIntegerBetween: lowerBound and: higherBound
