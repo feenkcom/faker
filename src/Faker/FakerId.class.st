@@ -5,6 +5,20 @@ Class {
 }
 
 { #category : #accessing }
+FakerId >> alphaNumbericStringOfSize: aSize [
+	|availableChars|
+	
+	availableChars := Character alphabet, (Character alphabet asUppercase), '0123456789'.
+	
+	^ String streamContents: [:aStream | 
+		aSize timesRepeat: [
+			aStream 
+				nextPut: (self base sample: availableChars)
+		].
+	].
+]
+
+{ #category : #accessing }
 FakerId >> numericStringOfSize: aSize [
 	^ String streamContents: [ :aStream |
 		aStream 
