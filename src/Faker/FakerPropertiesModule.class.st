@@ -31,6 +31,11 @@ FakerPropertiesModule class >> definedPropertyMethods [
 		each category beginsWith: 'accessing - properties' ]
 ]
 
+{ #category : #accessing }
+FakerPropertiesModule class >> label [
+	^ super label
+]
+
 { #category : #'modules - reflection' }
 FakerPropertiesModule class >> withAllDefinedModulesDo: aBlock [
 	aBlock value: self.
@@ -146,7 +151,7 @@ FakerPropertiesModule >> initialize [
 
 { #category : #accessing }
 FakerPropertiesModule >> label [
-	^ self className
+	^ self class label
 ]
 
 { #category : #accessing }
