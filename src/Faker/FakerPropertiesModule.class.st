@@ -126,10 +126,12 @@ FakerPropertiesModule >> gtViewCurrentPropertiesFor: aView [
 { #category : #'gt-extensions' }
 FakerPropertiesModule >> gtViewModulesFor: aView [
 	<gtView>
-	^ aView columnedList
+	^ aView columnedTree
 		title: 'Modules';
 		items: [ modulesDictionary associations ];
-		column: 'Key' text: [ :assoc | assoc key ];
+		children: [ :assoc | assoc value modulesDictionary associations ];
+		expandAll;
+		column: 'Key' text: [ :assoc | assoc value label ];
 		column: 'Properties' text: [ :assoc | assoc value propertiesCount ];
 		column: 'Modules' text: [ :assoc | assoc value modulesCount ];
 		send: [ :assoc | assoc value ]
@@ -143,8 +145,18 @@ FakerPropertiesModule >> initialize [
 ]
 
 { #category : #accessing }
+FakerPropertiesModule >> label [
+	^ self className
+]
+
+{ #category : #accessing }
 FakerPropertiesModule >> modulesCount [
 	^ modulesDictionary size
+]
+
+{ #category : #accessing }
+FakerPropertiesModule >> modulesDictionary [
+	^ modulesDictionary
 ]
 
 { #category : #copying }
