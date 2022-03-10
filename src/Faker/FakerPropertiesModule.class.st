@@ -9,6 +9,16 @@ Class {
 }
 
 { #category : #'modules - reflection' }
+FakerPropertiesModule class >> availablePropertyMethods [
+	| propertyMethods |
+	propertyMethods := OrderedCollection new.
+	propertyMethods addAll: FakerProperties definedPropertyMethods.
+	self withAllDefinedModulesDo: [ :each |
+		 propertyMethods addAll: each definedPropertyMethods ].
+	^ propertyMethods
+]
+
+{ #category : #'modules - reflection' }
 FakerPropertiesModule class >> definedModuleClasses [
 	^ self definedModuleNames 
 		collect: [ :each | each asClass ]
