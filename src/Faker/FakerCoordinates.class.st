@@ -8,56 +8,56 @@ Class {
 	#category : #'Faker-Modules'
 }
 
-{ #category : #accessing }
+{ #category : #constructor }
 FakerCoordinates class >> inAfrica [
 	^ self new
 		base: (Faker new);
 		inAfrica.
 ]
 
-{ #category : #accessing }
+{ #category : #constructor }
 FakerCoordinates class >> inAsia [
 	^ self new
 		base: (Faker new);
 		inAsia.
 ]
 
-{ #category : #accessing }
+{ #category : #constructor }
 FakerCoordinates class >> inAustralia [
 	^ self new
 		base: (Faker new);
 		inAustralia.
 ]
 
-{ #category : #accessing }
+{ #category : #constructor }
 FakerCoordinates class >> inEurope [
 	^ self new 
 		base: (Faker new);
 		inEurope
 ]
 
-{ #category : #accessing }
+{ #category : #constructor }
 FakerCoordinates class >> inNorthAmerica [
 	^ self new
 		base: (Faker new);
 		inNorthAmerica.
 ]
 
-{ #category : #accessing }
+{ #category : #constructor }
 FakerCoordinates class >> inSouthAmerica [
 	^ self new
 		base: (Faker new);
 		inSouthAmerica.
 ]
 
-{ #category : #accessing }
+{ #category : #constructor }
 FakerCoordinates class >> randomLocation [
 	^ self new 
 		base: (Faker new);
 		randomLocation
 ]
 
-{ #category : #accessing }
+{ #category : #generate }
 FakerCoordinates >> inAfrica [
 	|possibleSegments|
 	
@@ -76,7 +76,7 @@ FakerCoordinates >> inAfrica [
 	(self base sample: possibleSegments) value.
 ]
 
-{ #category : #accessing }
+{ #category : #generate }
 FakerCoordinates >> inAsia [
 	|possibleSegments|
 	
@@ -105,7 +105,7 @@ FakerCoordinates >> inAsia [
 	(self base sample: possibleSegments) value.
 ]
 
-{ #category : #accessing }
+{ #category : #generate }
 FakerCoordinates >> inAustralia [
 	|possibleSegments|
 	
@@ -149,13 +149,13 @@ FakerCoordinates >> inAustralia [
 	(self sample: possibleSegments) value.
 ]
 
-{ #category : #accessing }
+{ #category : #generate }
 FakerCoordinates >> inEurope [
 	self latitudeBetween: 35 and: 72.
 	self longitudeBetween: -10 and: 50.
 ]
 
-{ #category : #accessing }
+{ #category : #generate }
 FakerCoordinates >> inNorthAmerica [
 	|possibleSegments|
 	
@@ -180,7 +180,7 @@ FakerCoordinates >> inNorthAmerica [
 	(self base sample: possibleSegments) value.
 ]
 
-{ #category : #accessing }
+{ #category : #generate }
 FakerCoordinates >> inSouthAmerica [
 	|possibleSegments|
 	
@@ -219,13 +219,7 @@ FakerCoordinates >> latitude [
 	^ latitude
 ]
 
-{ #category : #accessing }
-FakerCoordinates >> latitude: aFloat [
-	self assert: (aFloat >= -90 and: [aFloat <= 90]).
-	latitude := aFloat.
-]
-
-{ #category : #accessing }
+{ #category : #utils }
 FakerCoordinates >> latitudeBetween: aNumber and: anotherNumber [
 	latitude := self base random nextBetween: aNumber and: anotherNumber.
 ]
@@ -235,19 +229,39 @@ FakerCoordinates >> longitude [
 	^ longitude
 ]
 
-{ #category : #accessing }
-FakerCoordinates >> longitude: aFloat [
-	self assert: (aFloat >= -180 and: [aFloat <= 180]).
-	longitude := aFloat.
-]
-
-{ #category : #accessing }
+{ #category : #utils }
 FakerCoordinates >> longitudeBetween: aNumber and: anotherNumber [
 	longitude := self base random nextBetween: aNumber and: anotherNumber.
 ]
 
-{ #category : #accessing }
+{ #category : #editing }
+FakerCoordinates >> moveWithVariance: aFloat [
+	|latitudeError longitudeError|
+
+	latitudeError := self base random nextBetween: (-1 * aFloat) and: aFloat.
+	longitudeError := self base random nextBetween: (-1 * aFloat) and: (aFloat).
+	
+	(latitude + latitudeError < -90 or: [latitude + latitudeError > 90]) 
+		ifTrue: [latitudeError := latitudeError * -1].
+	(longitude + longitudeError < -180 or: [longitude + longitudeError > 180]) 
+		ifTrue: [latitudeError := longitudeError * -1].
+	
+    latitude := latitude + latitudeError.
+	longitude := longitude + longitudeError.
+]
+
+{ #category : #generate }
 FakerCoordinates >> randomLocation [
-	self latitudeBetween: -90 and: 90.
-	self longitudeBetween: -180 and: 180.
+	|blockToRun|
+	
+	blockToRun := self base samplewithWeights: {
+		[self inEurope] -> 32.
+		[self inNorthAmerica] ->16.
+		[self inAsia] -> 16.
+		[self inSouthAmerica] -> 8.
+		[self inAfrica] -> 8.
+		[self inAustralia] -> 4. 
+	} asOrderedDictionary.
+	
+	blockToRun value.
 ]
