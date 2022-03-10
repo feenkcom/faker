@@ -220,12 +220,6 @@ FakerCoordinates >> latitude [
 ]
 
 { #category : #accessing }
-FakerCoordinates >> latitude: aFloat [
-	self assert: (aFloat >= -90 and: [aFloat <= 90]).
-	latitude := aFloat.
-]
-
-{ #category : #accessing }
 FakerCoordinates >> latitudeBetween: aNumber and: anotherNumber [
 	latitude := self base random nextBetween: aNumber and: anotherNumber.
 ]
@@ -236,14 +230,24 @@ FakerCoordinates >> longitude [
 ]
 
 { #category : #accessing }
-FakerCoordinates >> longitude: aFloat [
-	self assert: (aFloat >= -180 and: [aFloat <= 180]).
-	longitude := aFloat.
+FakerCoordinates >> longitudeBetween: aNumber and: anotherNumber [
+	longitude := self base random nextBetween: aNumber and: anotherNumber.
 ]
 
 { #category : #accessing }
-FakerCoordinates >> longitudeBetween: aNumber and: anotherNumber [
-	longitude := self base random nextBetween: aNumber and: anotherNumber.
+FakerCoordinates >> moveWithVariance: aFloat [
+	|latitudeError longitudeError|
+
+	latitudeError := self base random nextBetween: (-1 * aFloat) and: aFloat.
+	longitudeError := self base random nextBetween: (-1 * aFloat) and: (aFloat).
+	
+	(latitude + latitudeError < -90 or: [latitude + latitudeError > 90]) 
+		ifTrue: [latitudeError := latitudeError * -1].
+	(longitude + longitudeError < -180 or: [longitude + longitudeError > 180]) 
+		ifTrue: [latitudeError := longitudeError * -1].
+	
+    latitude := latitude + latitudeError.
+	longitude := longitude + longitudeError.
 ]
 
 { #category : #accessing }
