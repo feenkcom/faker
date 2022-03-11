@@ -9,6 +9,16 @@ Class {
 }
 
 { #category : #'modules - reflection' }
+FakerPropertiesModule class >> allDefinedPropertyMethods [
+	|allProperties|
+	
+	allProperties := (self allSuperclassesIncluding: FakerPropertiesModule) flatCollect: #definedPropertyMethods.
+	allProperties addAll: self definedPropertyMethods.
+
+	^ allProperties.
+]
+
+{ #category : #'modules - reflection' }
 FakerPropertiesModule class >> availablePropertyMethods [
 	| propertyMethods |
 	propertyMethods := OrderedCollection new.
@@ -38,8 +48,22 @@ FakerPropertiesModule class >> definedModuleNames [
 { #category : #'modules - reflection' }
 FakerPropertiesModule class >> definedPropertyMethods [
 	^ self methods select: [ :each |
-		each category = 'accessing - properties' or: [
-			each category = 'property-getter' ] ]
+		each category = 'accessing - properties' ]
+]
+
+{ #category : #'gt-extensions' }
+FakerPropertiesModule class >> gtViewAllPropertiesFor: aView [
+	<gtView>
+	<gtClassView>
+	^ aView columnedList
+		  title: 'All Properties';
+		  items: [ self allDefinedPropertyMethods ];
+		  column: 'Module' 
+		  	text: [ :aMethod | self label ]
+		  	width: 400;
+		  column: 'Property' text: [ :aMethod | 
+			  aMethod selector soAsCapitalizedCamelCase ];
+			withCopyConfluceMarkupAction
 ]
 
 { #category : #accessing }
@@ -104,23 +128,6 @@ FakerPropertiesModule >> base: aFaker [
 	super base: aFaker.
 	self propertyModules do: [ :aPropertiesModule |
 		aPropertiesModule base: aFaker ]
-]
-
-{ #category : #'gt-extensions' }
-FakerPropertiesModule >> gtViewAllPropertiesFor: aView [
-	<gtView>
-	^ aView columnedList
-		title: 'All Properties';
-		priority: 5;
-		items: [ self allProperties associations ];
-		column: 'Property' text: [ :assoc | 
-			assoc key soAsCapitalizedCamelCase ];
-		column: 'Value' text: [ :assoc | 
-			(assoc value isKindOf: FakerValueSpecification)
-				ifTrue: [ assoc value valueDescription ]
-				ifFalse: [ assoc value  gtDisplayString ] ];
-		send: [ :assoc | assoc value ];
-		withCopyConfluceMarkupAction
 ]
 
 { #category : #'gt-extensions' }
