@@ -131,6 +131,23 @@ FakerPropertiesModule >> base: aFaker [
 ]
 
 { #category : #'gt-extensions' }
+FakerPropertiesModule >> gtViewAllPropertiesFor: aView [
+	<gtView>
+	^ aView columnedList
+		title: 'All Properties';
+		priority: 5;
+		items: [ self allProperties associations ];
+		column: 'Property' text: [ :assoc | 
+			assoc key soAsCapitalizedCamelCase ];
+		column: 'Value' text: [ :assoc | 
+			(assoc value isKindOf: FakerValueSpecification)
+				ifTrue: [ assoc value valueDescription ]
+				ifFalse: [ assoc value  gtDisplayString ] ];
+		send: [ :assoc | assoc value ];
+		withCopyConfluceMarkupAction
+]
+
+{ #category : #'gt-extensions' }
 FakerPropertiesModule >> gtViewCurrentPropertiesFor: aView [
 	<gtView>
 	^ aView columnedList
