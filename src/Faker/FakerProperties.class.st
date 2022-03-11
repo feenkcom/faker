@@ -4,6 +4,13 @@ Class {
 	#category : #'Faker-Properties'
 }
 
+{ #category : #accessing }
+FakerProperties class >> itself [
+	<gtExample>
+	<noTest>
+	^ self
+]
+
 { #category : #'accessing - properties date' }
 FakerProperties >> backwardDuration [
 	<return: #Duration or: nil>

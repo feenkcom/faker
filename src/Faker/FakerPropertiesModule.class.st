@@ -38,7 +38,8 @@ FakerPropertiesModule class >> definedModuleNames [
 { #category : #'modules - reflection' }
 FakerPropertiesModule class >> definedPropertyMethods [
 	^ self methods select: [ :each |
-		each category beginsWith: 'accessing - properties' ]
+		each category = 'accessing - properties' or: [
+			each category = 'property-getter' ] ]
 ]
 
 { #category : #accessing }
