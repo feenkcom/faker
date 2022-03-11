@@ -23,6 +23,12 @@ FakerModule >> base: aFaker [
 	base := aFaker
 ]
 
+{ #category : #initialization }
+FakerModule >> ensureFaker [
+	base ifNil: [ 
+		self base: Faker new ] 
+]
+
 { #category : #accessing }
 FakerModule >> locales [
 	<return: #FakerLocales>
