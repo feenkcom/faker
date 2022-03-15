@@ -57,6 +57,14 @@ FakerCoordinates class >> randomLocation [
 		randomLocation
 ]
 
+{ #category : #accessing }
+FakerCoordinates >> absoluteDistanceTo: anObject [
+	^ (
+		(self longitude - anObject longitude) squared + 
+		(self latitude - anObject latitude) squared
+	) sqrt.
+]
+
 { #category : #generate }
 FakerCoordinates >> inAfrica [
 	|possibleSegments|
