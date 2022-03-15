@@ -227,6 +227,12 @@ FakerCoordinates >> latitude [
 	^ latitude
 ]
 
+{ #category : #accessing }
+FakerCoordinates >> latitude: aFloat [
+	self assert: (aFloat >= -90 and: [aFloat <= 90]).
+	latitude := aFloat.
+]
+
 { #category : #utils }
 FakerCoordinates >> latitudeBetween: aNumber and: anotherNumber [
 	latitude := self base random nextBetween: aNumber and: anotherNumber.
@@ -235,6 +241,12 @@ FakerCoordinates >> latitudeBetween: aNumber and: anotherNumber [
 { #category : #accessing }
 FakerCoordinates >> longitude [
 	^ longitude
+]
+
+{ #category : #accessing }
+FakerCoordinates >> longitude: aFloat [
+	self assert: (aFloat >= -180 and: [aFloat <= 180]).
+	longitude := aFloat.
 ]
 
 { #category : #utils }
@@ -256,6 +268,16 @@ FakerCoordinates >> moveWithVariance: aFloat [
 	
     latitude := latitude + latitudeError.
 	longitude := longitude + longitudeError.
+]
+
+{ #category : #accessing }
+FakerCoordinates >> newCoordinatesMovedWithVariance: aFloat [
+	^ FakerCoordinates 
+		new
+		base: (self base);
+		longitude: (self longitude);
+		latitude: (self latitude);
+		moveWithVariance: aFloat.
 ]
 
 { #category : #generate }
