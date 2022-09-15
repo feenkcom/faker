@@ -21,6 +21,11 @@ Faker class >> initialize [
    Letters := ULetters, ULetters asUppercase.
 ]
 
+{ #category : #'accessing - modules' }
+Faker >> addressGenerator [
+	^ FakerAddress new base: self
+]
+
 { #category : #accessing }
 Faker >> boolean [
 	^ self sample: #(true false)

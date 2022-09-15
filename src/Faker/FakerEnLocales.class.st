@@ -10,6 +10,11 @@ FakerEnLocales class >> localeCode [
 ]
 
 { #category : #module }
+FakerEnLocales >> addressModule [
+	^ FakerEnAddressLocaleModule new base: self base.
+]
+
+{ #category : #module }
 FakerEnLocales >> companyModule [
 	^ FakerEnCompanyLocaleModule new base: self base
 ]
