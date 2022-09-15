@@ -181,12 +181,17 @@ Class {
 	#instVars : [
 		'internetDomainSuffixes'
 	],
-	#category : 'Faker-Locales'
+	#category : #'Faker-Locales'
 }
 
 { #category : #accessing }
 FakerDeLocales class >> localeCode [
 	^ 'de_DE'
+]
+
+{ #category : #module }
+FakerDeLocales >> addressModule [
+	^ FakerDeAddressLocaleModule new base: self base.
 ]
 
 { #category : #module }
