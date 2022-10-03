@@ -1,7 +1,7 @@
 Class {
 	#name : #FakerInternet,
 	#superclass : #FakerModule,
-	#category : 'Faker-Modules'
+	#category : #'Faker-Modules'
 }
 
 { #category : #cookie }
@@ -65,11 +65,13 @@ FakerInternet >> domainWord [
 
 { #category : #address }
 FakerInternet >> url [
+
 	<return: #String>
-	^ self 
-		urlScheme: 'https' 
-		host: self domainName 
-		path: ((self sample: (0 to: 6)) timesCollect: [ self username ])
+	| count path |
+	count := self sample: (0 to: 6).
+	path := (1 to: count) collect: [ :_idx | self username ].
+
+	^ self urlScheme: 'https' host: self domainName path: path
 ]
 
 { #category : #address }

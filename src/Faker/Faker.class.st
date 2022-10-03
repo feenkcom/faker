@@ -231,22 +231,25 @@ Faker >> sample: aCollection [
 
 { #category : #actions }
 Faker >> sample: aCollection ofSize: aSize [
+
 	"Return a given numer of items from the collection.
 	Each value can be sampled multiple times."
+
 	<return: #Object>
-	self 
+	self
 		assert: [ aCollection isNotNil ]
 		description: [ 'Only collections can be sampled' ].
-	^ aSize timesCollect: [
-		self sample: aCollection ]
+
+	^ (1 to: aSize) collect: [ :_idx | self sample: aCollection ]
 ]
 
 { #category : #actions }
 Faker >> sample: aCollection ofSize: aSize withCumulativeWeights: aCollectionOfCumulativeWeights [
-	^ aSize timesCollect: [ 
-		self 
-			sample: aCollection 
-			withCumulativeWeights: aCollectionOfCumulativeWeights ]
+
+	^ (1 to: aSize) collect: [ :idx | 
+		  self
+			  sample: aCollection
+			  withCumulativeWeights: aCollectionOfCumulativeWeights ]
 ]
 
 { #category : #actions }
@@ -309,14 +312,23 @@ Faker >> sizeGenerator [
 
 { #category : #actions }
 Faker >> uniqueSample: aCollection ofSize: aSize [
+
 	"Return a given numer of items from the collection. 
 	Ensure every value is sampled at most once."
-	| indexes |
+
 	<return: #Object>
-	self 
+	| indexes |
+	
+	self
 		assert: [ aCollection isNotNil ]
 		description: [ 'Only collections can be sampled' ].
+
+	self
+		assert: [ aSize <= aCollection size ]
+		description:
+		'You can not create a result that is larger than the collection provided'.
+
 	indexes := self shuffle: (1 to: aCollection size) asOrderedCollection.
-	^ aSize timesCollect: [ :index |
-		aCollection at: (indexes at: index) ]
+
+	^ (1 to: aSize) collect: [ :idx | aCollection at: (indexes at: idx) ]
 ]
