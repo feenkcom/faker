@@ -284,7 +284,7 @@ FakerCoordinates >> newCoordinatesMovedWithVariance: aFloat [
 FakerCoordinates >> randomLocation [
 	|blockToRun|
 	
-	blockToRun := self base samplewithWeights: {
+	blockToRun := self base sampleWithWeights: {
 		[self inEurope] -> 32.
 		[self inNorthAmerica] ->16.
 		[self inAsia] -> 16.

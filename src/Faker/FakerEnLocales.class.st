@@ -15,6 +15,11 @@ FakerEnLocales >> addressModule [
 ]
 
 { #category : #module }
+FakerEnLocales >> bookModule [
+	^ FakerEnBookLocaleModule new base: self base
+]
+
+{ #category : #module }
 FakerEnLocales >> companyModule [
 	^ FakerEnCompanyLocaleModule new base: self base
 ]

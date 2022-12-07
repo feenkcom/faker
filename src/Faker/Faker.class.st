@@ -26,6 +26,11 @@ Faker >> addressGenerator [
 	^ FakerAddress new base: self
 ]
 
+{ #category : #'accessing - modules' }
+Faker >> book [
+	^ FakerBook new base: self
+]
+
 { #category : #accessing }
 Faker >> boolean [
 	^ self sample: #(true false)
@@ -281,7 +286,7 @@ Faker >> sample: aCollection withWeights: aCollectionOfWeights [
 ]
 
 { #category : #actions }
-Faker >> samplewithWeights: aCollectionOfValusAndWeights [
+Faker >> sampleWithWeights: aCollectionOfValusAndWeights [
 	^ self
 		sample: aCollectionOfValusAndWeights keys
 		withWeights: aCollectionOfValusAndWeights values

@@ -7,7 +7,7 @@ Trait {
 TFakerAddressLocaleModule >> composedStreetName [
 	| streetName |
 
-	streetName := (self base samplewithWeights: {true -> 70 . false -> 30} asOrderedDictionary)
+	streetName := (self base sampleWithWeights: {true -> 70 . false -> 30} asOrderedDictionary)
 		ifTrue: [ self sample: self composedStreetNamePrefixes  ]
 		ifFalse: [
 			self sample: {
@@ -30,7 +30,7 @@ TFakerAddressLocaleModule >> simpleStreetName [
 
 { #category : #address }
 TFakerAddressLocaleModule >> streetName [
-	(self base samplewithWeights: self simpleToComposedStreetNamesRatio) 
+	(self base sampleWithWeights: self simpleToComposedStreetNamesRatio) 
 		ifTrue: [ ^ self simpleStreetName ]
 		ifFalse: [ ^ self composedStreetName ].
 ]
