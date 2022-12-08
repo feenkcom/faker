@@ -15,6 +15,16 @@ FakerEnBookLocaleModule >> author [
 ]
 
 { #category : #accessing }
+FakerEnBookLocaleModule >> cover [
+	^ self base sample: self covers
+]
+
+{ #category : #accessing }
+FakerEnBookLocaleModule >> covers [
+	^ #('Paperback' 'Hardback')
+]
+
+{ #category : #accessing }
 FakerEnBookLocaleModule >> genre [
 	^ self base sample: self genres
 ]

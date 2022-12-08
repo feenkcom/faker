@@ -11,6 +11,12 @@ FakerBook >> author [
 ]
 
 { #category : #accessing }
+FakerBook >> cover [
+	<return: #String>
+	^ self locales bookModule cover
+]
+
+{ #category : #accessing }
 FakerBook >> genre [
 	<return: #String>
 	^ self locales bookModule genre
