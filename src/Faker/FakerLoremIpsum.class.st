@@ -10,6 +10,14 @@ FakerLoremIpsum >> anyLength [
 ]
 
 { #category : #accessing }
+FakerLoremIpsum >> between: aMinLength and: aMaxLength [
+	| aLength |
+	aLength := self base nextIntegerBetween: aMinLength and: aMaxLength.
+
+	^ String loremIpsum: aLength
+]
+
+{ #category : #accessing }
 FakerLoremIpsum >> ofLength: aLength [
 	^ String loremIpsum: aLength
 ]

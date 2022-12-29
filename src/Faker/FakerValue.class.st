@@ -6,7 +6,7 @@ I use a {{gtMethod:FakerValue >>builder:}} to generate random values.
 The following example shows a JSON Object **template** with random values: {{gtExample: FakerValueExamples >> #personDictionaryTemplate | codeExpanded=false | previewExpanded=true | previewHeight=220}}
 Such template can be converted to a **sample** with random values using the {{gtMethod: Object >> #copyWithFaker: | label=#selector}} method: {{gtExample: FakerValueExamples >> #personDictionarySample | codeExpanded=false | previewExpanded=true | previewHeight=220}}
 ##Model Object
-The same {{gtClass:FakerValue}} definitions can be used on model object, e.g., {{gtClass:FakerPersonDummyModel}}. See the following **template**: {{gtExample: FakerValueExamples>>#personModelTemplate | codeExpanded=false | previewExpanded=true | previewHeight=220}}
+The same {{gtClass:FakerValue}} definitions can be used on model objects, e.g., {{gtClass:FakerPersonDummyModel}}. See the following **template**: {{gtExample: FakerValueExamples>>#personModelTemplate | codeExpanded=false | previewExpanded=true | previewHeight=220}}
 and a resulting **sample**: {{gtExample: FakerValueExamples>>#personModelSample | codeExpanded=false | previewExpanded=true | previewHeight=220}}
 ##Faker Path
 The examples above uses {{gtMethod:FakerValue class>> #builder:}}. Users can used simplified value definitions using {{gtMethod: FakerValue class >> #path:}} as exemplified in the following example: {{gtExample: FakerValueExamples>>#personDictionaryPathTemplate | previewHeight=220}}
