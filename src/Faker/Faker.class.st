@@ -127,6 +127,11 @@ Faker >> locales: aFakerLocales [
 ]
 
 { #category : #'accessing - modules' }
+Faker >> loremIpsum [
+	^ FakerLoremIpsum new base: self
+]
+
+{ #category : #'accessing - modules' }
 Faker >> multiplier [
 	^ FakerMultiplier new base: self
 ]
@@ -186,8 +191,13 @@ Faker >> numerify: aNumberPattern leadingZero: aBoolean [
 ]
 
 { #category : #'accessing - modules' }
-Faker >> personNameGenerator [
+Faker >> person [
 	^ FakerName new base: self
+]
+
+{ #category : #'accessing - modules' }
+Faker >> personNameGenerator [
+	^ self person
 ]
 
 { #category : #actions }

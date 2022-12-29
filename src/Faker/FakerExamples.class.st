@@ -1,8 +1,69 @@
 Class {
 	#name : #FakerExamples,
 	#superclass : #Object,
-	#category : 'Faker-Examples'
+	#category : #'Faker-Examples'
 }
+
+{ #category : #book }
+FakerExamples >> bookAuthor [
+	<gtExample>
+	| aResult |
+	aResult := self faker book author.
+	self assert: aResult isString.
+	self assert: aResult isNotEmpty.
+	^ aResult
+]
+
+{ #category : #book }
+FakerExamples >> bookCover [
+	<gtExample>
+	| aResult |
+	aResult := self faker book cover.
+	self assert: aResult isString.
+	self assert: aResult isNotEmpty.
+	^ aResult
+]
+
+{ #category : #book }
+FakerExamples >> bookGenre [
+	<gtExample>
+	| aResult |
+	aResult := self faker book genre.
+	self assert: aResult isString.
+	self assert: aResult isNotEmpty.
+	^ aResult
+]
+
+{ #category : #book }
+FakerExamples >> bookIsbn10 [
+	<gtExample>
+	| aResult |
+	aResult := self faker book isbn10.
+	self assert: aResult isString.
+	self assert: aResult isNotEmpty.
+	self assert: aResult size equals: 10.
+	^ aResult
+]
+
+{ #category : #book }
+FakerExamples >> bookPublisher [
+	<gtExample>
+	| aResult |
+	aResult := self faker book publisher.
+	self assert: aResult isString.
+	self assert: aResult isNotEmpty.
+	^ aResult
+]
+
+{ #category : #book }
+FakerExamples >> bookTitle [
+	<gtExample>
+	| aResult |
+	aResult := self faker book title.
+	self assert: aResult isString.
+	self assert: aResult isNotEmpty.
+	^ aResult
+]
 
 { #category : #company }
 FakerExamples >> companyName [
