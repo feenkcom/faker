@@ -1,3 +1,6 @@
+"
+I exemplify {{gtClass:FakerValue}}. 
+"
 Class {
 	#name : #FakerValueExamples,
 	#superclass : #Object,
