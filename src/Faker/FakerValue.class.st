@@ -21,21 +21,28 @@ Class {
 }
 
 { #category : #'instance creation' }
-FakerValue class >> builder: aBlock [
+FakerValue class >> block: aBlock [
+	"aBlock receives one argument which is a Faker instance.
+	aBlock returns a random sample (using the Faker instance)"
+
+	^ self builder: (FakerValueBlock new block: aBlock)
+]
+
+{ #category : #'instance creation' }
+FakerValue class >> builder: aBuilder [
 	"Builder must be a an object that understands #cull:.
 	The builder receives a Faker instance as parameter."
 
-	^ self new builder: aBlock
+	^ self new builder: aBuilder
 ]
 
 { #category : #'instance creation' }
 FakerValue class >> path: aPath [
-	"aPath can be a string, e.g., `person.firstName` which defines a Faker modules and methods to call. For example the `person.firstName` path defines the following `aFaker person firstName` call."
+	"aPath can be a string, e.g., `person.firstName` which defines a Faker modules and methods to call. For example the `person.firstName` path defines the following `aFaker person firstName` call.
+	
+	aPath can also be a collection, e.g., #(person firstName)."
 
-	| aBuilder |
-	aBuilder := FakerValuePath new path: aPath.
-
-	^ self builder: aBuilder
+	^ self builder: (FakerValuePath new path: aPath)
 ]
 
 { #category : #accessing }

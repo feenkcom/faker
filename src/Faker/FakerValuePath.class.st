@@ -18,6 +18,17 @@ FakerValuePath >> cull: aFaker [
 	^ self value: aFaker
 ]
 
+{ #category : #'gt - extensions' }
+FakerValuePath >> gtPathFor: aView [
+	<gtView>
+	self path ifNil: [ ^ aView empty ].
+
+	^ aView columnedList
+		title: 'Path';
+		items: [ self path ifNil: #() ];
+		column: 'Path' text: #yourself
+]
+
 { #category : #accessing }
 FakerValuePath >> path [
 	<return: #Collection of: #String>
@@ -26,7 +37,9 @@ FakerValuePath >> path [
 
 { #category : #accessing }
 FakerValuePath >> path: aPath [
-	"aPath can be a string, e.g., `person.firstName` which defines a Faker modules and methods to call. For example the `person.firstName` path defines the following `aFaker person firstName` call."
+	"aPath can be a string, e.g., `person.firstName` which defines a Faker modules and methods to call. For example the `person.firstName` path defines the following `aFaker person firstName` call.
+	
+	aPath can also be a collection, e.g., #(person firstName)."
 
 	path := aPath isString
 			ifTrue: [ ($. split: aPath) collect: #asSymbol ]

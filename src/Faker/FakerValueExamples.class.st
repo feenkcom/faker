@@ -8,24 +8,36 @@ Class {
 }
 
 { #category : #'person dictionary' }
+FakerValueExamples >> personDictionaryPathSample [
+	<gtExample>
+	| aTemplate aSample |
+	aTemplate := self personDictionaryPathTemplate.
+
+	aSample := aTemplate copyWithFaker: Faker new.
+
+	self assert: aSample isDictionary.
+	self assert: aSample size equals: aTemplate size.
+	self assert: aSample ~= aTemplate.
+
+	self assert: (aSample at: #firstName) isString.
+	self assert: (aSample at: #lastName) isString.
+	self assert: ((aSample at: #birthday) isKindOf: Timespan).
+
+	^ aSample
+]
+
+{ #category : #'person dictionary' }
 FakerValueExamples >> personDictionaryPathTemplate [
 	<gtExample>
-	| aTemplate aFirstValue aSeconValue |
+	| aTemplate |
 	aTemplate := OrderedDictionary new.
 
-	aTemplate
-		at: #firstName
-		put: (aFirstValue := FakerValue path: 'person.firstName').
-	aTemplate
-		at: #lastName
-		put: (aSeconValue := FakerValue path: 'person.lastName').
+	aTemplate at: #firstName put: (FakerValue path: 'person.firstName').
+	aTemplate at: #lastName put: (FakerValue path: #(person lastName)).
 	aTemplate
 		at: #birthday
 		put: (FakerValue
-				builder: [ :aFaker | aFaker date between: 1950 asYear and: 2010 asYear ]).
-
-	self assert: (aFirstValue copyWithFaker: Faker new) isString.
-	self assert: (aSeconValue copyWithFaker: Faker new) isString.
+				block: [ :aFaker | aFaker date between: 1950 asYear and: 2010 asYear ]).
 
 	^ aTemplate
 ]
@@ -66,14 +78,14 @@ FakerValueExamples >> personDictionaryTemplate [
 
 	aTemplate
 		at: #firstName
-		put: (FakerValue builder: [ :aFaker | aFaker person firstName ]).
+		put: (FakerValue block: [ :aFaker | aFaker person firstName ]).
 	aTemplate
 		at: #lastName
-		put: (FakerValue builder: [ :aFaker | aFaker person lastName ]).
+		put: (FakerValue block: [ :aFaker | aFaker person lastName ]).
 	aTemplate
 		at: #birthday
 		put: (FakerValue
-				builder: [ :aFaker | aFaker date between: 1950 asYear and: 2010 asYear ]).
+				block: [ :aFaker | aFaker date between: 1950 asYear and: 2010 asYear ]).
 
 	^ aTemplate
 ]
@@ -117,11 +129,11 @@ FakerValueExamples >> personModelTemplate [
 	| aModel |
 	aModel := FakerPersonDummyModel new.
 
-	aModel firstName: (FakerValue builder: [ :aFaker | aFaker person firstName ]).
-	aModel lastName: (FakerValue builder: [ :aFaker | aFaker person lastName ]).
+	aModel firstName: (FakerValue path: 'person.firstName').
+	aModel lastName: (FakerValue block: [ :aFaker | aFaker person lastName ]).
 	aModel
 		birthday: (FakerValue
-				builder: [ :aFaker | aFaker date between: 1950 asYear and: 2010 asYear ]).
+				block: [ :aFaker | aFaker date between: 1950 asYear and: 2010 asYear ]).
 
 	^ aModel
 ]
