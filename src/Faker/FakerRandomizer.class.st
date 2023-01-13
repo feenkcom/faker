@@ -12,6 +12,11 @@ Class {
 	#category : #'Faker-Values'
 }
 
+{ #category : #copying }
+FakerRandomizer >> copyWithFaker: aFaker [
+	^ self value copyWithFaker: aFaker
+]
+
 { #category : #accessing }
 FakerRandomizer >> description [
 	<return: #String>
