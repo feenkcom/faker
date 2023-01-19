@@ -86,7 +86,7 @@ FakerValue >> printOn: aStream [
 		nextPut: $)
 ]
 
-{ #category : #private }
+{ #category : #copying }
 FakerValue >> sample [
 	^ self copyWithFaker: Faker new
 ]

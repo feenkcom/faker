@@ -7,7 +7,8 @@ Class {
 	#instVars : [
 		'description',
 		'value',
-		'name'
+		'name',
+		'id'
 	],
 	#category : #'Faker-Values'
 }
@@ -26,6 +27,16 @@ FakerRandomizer >> description [
 { #category : #accessing }
 FakerRandomizer >> description: anObject [
 	description := anObject
+]
+
+{ #category : #accessing }
+FakerRandomizer >> id [
+	^ id
+]
+
+{ #category : #accessing }
+FakerRandomizer >> id: anObject [
+	id := anObject
 ]
 
 { #category : #accessing }
@@ -48,6 +59,11 @@ FakerRandomizer >> printOn: aStream [
 		nextPut: $(;
 		nextPutAll: self name asString;
 		nextPut: $)
+]
+
+{ #category : #copying }
+FakerRandomizer >> sample [
+	^ self copyWithFaker: Faker new
 ]
 
 { #category : #accessing }
