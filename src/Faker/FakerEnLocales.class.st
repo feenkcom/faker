@@ -36,6 +36,11 @@ FakerEnLocales >> countryNamesAndIsoCodesJsonString [
 ]
 
 { #category : #module }
+FakerEnLocales >> musicModule [
+	^ FakerEnMusicLocaleModule new base: self base
+]
+
+{ #category : #module }
 FakerEnLocales >> nameModule [
 	^ FakerEnNameLocaleModule new base: self base
 ]

@@ -136,6 +136,11 @@ Faker >> multiplier [
 	^ FakerMultiplier new base: self
 ]
 
+{ #category : #'accessing - modules' }
+Faker >> music [
+	^ FakerMusic new base: self
+]
+
 { #category : #actions }
 Faker >> nextInteger: aHigherBound [
 	^ self random 
