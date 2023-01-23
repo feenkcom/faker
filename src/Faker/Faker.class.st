@@ -340,3 +340,8 @@ Faker >> uniqueSample: aCollection ofSize: aSize [
 	^ aSize timesCollect: [ :index |
 		aCollection at: (indexes at: index) ]
 ]
+
+{ #category : #'accessing - modules' }
+Faker >> unsplash [
+	^ FakerUnsplash new base: self
+]

@@ -66,11 +66,6 @@ FakerPropertiesModule class >> gtViewAllPropertiesFor: aView [
 			withCopyConfluceMarkupAction
 ]
 
-{ #category : #accessing }
-FakerPropertiesModule class >> label [
-	^ super label
-]
-
 { #category : #'modules - reflection' }
 FakerPropertiesModule class >> withAllDefinedModulesDo: aBlock [
 	aBlock value: self.

@@ -93,3 +93,31 @@ FakerProperties >> toDateAndTime: aDateAndTime [
 		at: #toDateAndTime 
 		put: aDateAndTime
 ]
+
+{ #category : #'accessing - properties date' }
+FakerProperties >> unsplashAccessKey [
+	<return: #String or: nil>
+	^ self at: #unsplashAccessKey ifAbsent: [ nil ]
+]
+
+{ #category : #'api - configuration' }
+FakerProperties >> unsplashAccessKey: aKey [
+	self at: #unsplashAccessKey put: aKey
+]
+
+{ #category : #'accessing - properties date' }
+FakerProperties >> unsplashCount [
+	<return: #Integer or: nil>
+	^ self at: #unsplashCount ifAbsent: [ nil ]
+]
+
+{ #category : #'accessing - properties date' }
+FakerProperties >> unsplashQuery [
+	<return: #String or: nil>
+	^ self at: #unsplashQuery ifAbsent: [ nil ]
+]
+
+{ #category : #'api - configuration' }
+FakerProperties >> unsplashQuery: aQuery [
+	self at: #unsplashQuery put: aQuery
+]
