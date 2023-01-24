@@ -132,14 +132,14 @@ FakerPropertiesModule >> gtViewAllPropertiesFor: aView [
 		title: 'All Properties';
 		priority: 5;
 		items: [ self allProperties associations ];
-		column: 'Property' text: [ :assoc | 
-			assoc key soAsCapitalizedCamelCase ];
-		column: 'Value' text: [ :assoc | 
-			(assoc value isKindOf: FakerValueSpecification)
-				ifTrue: [ assoc value valueDescription ]
-				ifFalse: [ assoc value  gtDisplayString ] ];
-		send: [ :assoc | assoc value ];
-		withCopyConfluceMarkupAction
+		column: 'Property' text: [ :assoc | assoc key ];
+		column: 'Value'
+			text: [ :assoc | 
+				(assoc value isKindOf: FakerValueSpecification)
+					ifTrue: [ assoc value valueDescription ]
+					ifFalse: [ assoc value gtDisplayString ] ]
+			weight: 3;
+		send: [ :assoc | assoc value ]
 ]
 
 { #category : #'gt-extensions' }
@@ -149,12 +149,13 @@ FakerPropertiesModule >> gtViewCurrentPropertiesFor: aView [
 		title: 'Current Properties';
 		priority: 10;
 		items: [ propertiesDictionary associations ];
-		column: 'Property' text: [ :assoc |
-			assoc key soAsCapitalizedCamelCase ];
-		column: 'Value' text: [ :assoc | 
-			(assoc value isKindOf: FakerValueSpecification)
-				ifTrue: [ assoc value valueDescription ]
-				ifFalse: [ assoc value  gtDisplayString ] ];
+		column: 'Property' text: [ :assoc | assoc key ];
+		column: 'Value'
+			text: [ :assoc | 
+				(assoc value isKindOf: FakerValueSpecification)
+					ifTrue: [ assoc value valueDescription ]
+					ifFalse: [ assoc value gtDisplayString ] ]
+			weight: 3;
 		send: [ :assoc | assoc value ]
 ]
 

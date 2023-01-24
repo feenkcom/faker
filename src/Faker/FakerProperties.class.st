@@ -82,6 +82,11 @@ FakerProperties >> openaiImageCount [
 	^ self at: #openaiImageCount ifAbsent: [ 1 ]
 ]
 
+{ #category : #'api - configuration' }
+FakerProperties >> openaiImageCount: aCount [
+	self at: #openaiImageCount put: aCount
+]
+
 { #category : #'accessing - properties date' }
 FakerProperties >> openaiImagePrompt [
 	<return: #String>
