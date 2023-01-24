@@ -38,6 +38,11 @@ FakerUnsplashPhoto >> smallUrl [
 ]
 
 { #category : #accessing }
+FakerUnsplashPhoto >> url [
+	^ self regularUrl
+]
+
+{ #category : #accessing }
 FakerUnsplashPhoto >> urls [
 	^ self json at: #urls ifAbsent: [ #() ]
 ]
