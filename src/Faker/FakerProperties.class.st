@@ -65,6 +65,34 @@ FakerProperties >> isDateRangeDefined [
 				self forwardDuration isNotNil ] ] ]
 ]
 
+{ #category : #'accessing - properties date' }
+FakerProperties >> openaiApiKey [
+	<return: #String or: nil>
+	^ self at: #openaiApiKey ifAbsent: [ nil ]
+]
+
+{ #category : #'api - configuration' }
+FakerProperties >> openaiApiKey: aKey [
+	self at: #openaiApiKey put: aKey
+]
+
+{ #category : #'accessing - properties date' }
+FakerProperties >> openaiImageCount [
+	<return: #String>
+	^ self at: #openaiImageCount ifAbsent: [ 1 ]
+]
+
+{ #category : #'accessing - properties date' }
+FakerProperties >> openaiImagePrompt [
+	<return: #String>
+	^ self at: #openaiImagePrompt ifAbsent: [ 'random image' ]
+]
+
+{ #category : #'api - configuration' }
+FakerProperties >> openaiImagePrompt: aPrompt [
+	self at: #openaiImagePrompt put: aPrompt
+]
+
 { #category : #accessing }
 FakerProperties >> scaleFactor [ 
 	^ self 

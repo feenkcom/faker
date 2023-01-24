@@ -1,3 +1,16 @@
+"
+I generate content using [](https://unsplash.com).
+#Usage
+```Smalltalk
+Faker new
+	in: [ :aFaker | 
+		aFaker properties
+			unsplashAccessKey: (FileLocator home / '.secrets' / 'unsplash-access-key.txt') contents;
+			unsplashQuery: 'book cover'.
+		aFaker unsplash photo ]
+```
+
+"
 Class {
 	#name : #FakerUnsplash,
 	#superclass : #FakerModule,

@@ -196,6 +196,11 @@ Faker >> numerify: aNumberPattern leadingZero: aBoolean [
 ]
 
 { #category : #'accessing - modules' }
+Faker >> openai [
+	^ FakerOpenAI new base: self
+]
+
+{ #category : #'accessing - modules' }
 Faker >> person [
 	^ FakerName new base: self
 ]
