@@ -9,8 +9,8 @@ Class {
 
 { #category : #api }
 FakerMultiplier >> sampleOfSize: aSize [
-	^ aSize timesCollect: [ 
-		targetComputation value ]
+
+	^ (1 to: aSize) collect: [ :_idx | targetComputation value ]
 ]
 
 { #category : #accessing }
